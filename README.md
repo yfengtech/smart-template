@@ -5,6 +5,8 @@
 
 引入此库，节省时间，只需要写你关心的东西
 
+![演示](https://raw.githubusercontent.com/moonlight920/SmartTemplate/b5cc7ff0634a4001da57bf1c330de32af982485f/album/samrt_template.gif)
+
 ## 前提
 使用此库，需注意如下
 * `minSdkVersion` ≥ 21
