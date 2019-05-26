@@ -1,6 +1,9 @@
 # SmartTemplate
 是一个写demo的壳子，用于快捷生成demo应用
 
+你不需要重复的写的DemoActivity，不需要重复的画UI演示demo
+
+引入此库，节省时间，只需要写你关心的东西
 
 ## 前提
 使用此库，需注意如下
