@@ -2,8 +2,8 @@ package com.yf.smarttemplate.sample
 
 import android.app.Application
 import android.support.v7.app.AlertDialog
-import com.yf.smarttemplate.Document
 import com.yf.smarttemplate.SmartTemplate
+import com.yf.smarttemplate.doc.Document
 
 @Document("README.md")
 class MyApplication : Application() {

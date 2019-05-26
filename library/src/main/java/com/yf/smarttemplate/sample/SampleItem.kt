@@ -1,4 +1,4 @@
-package com.yf.smarttemplate
+package com.yf.smarttemplate.sample
 
 import android.content.Context
 import java.io.Serializable

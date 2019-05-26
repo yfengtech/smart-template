@@ -1,4 +1,4 @@
-package com.yf.smarttemplate
+package com.yf.smarttemplate.sample
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -11,6 +11,9 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import com.yf.smarttemplate.R
+import com.yf.smarttemplate.adapter.TemplateAdapter
+import com.yf.smarttemplate.doc.DocumentFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
 private const val ARG_PARAM1 = "param1"

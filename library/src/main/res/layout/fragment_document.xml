@@ -14,7 +14,7 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_height="wrap_content"/>
 
-    <com.yf.smarttemplate.MarkdownView
+    <com.yf.smarttemplate.doc.MarkdownView
             android:id="@+id/markdownView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

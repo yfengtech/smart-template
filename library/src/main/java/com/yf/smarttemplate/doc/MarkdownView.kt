@@ -1,4 +1,4 @@
-package com.yf.smarttemplate
+package com.yf.smarttemplate.doc
 
 import android.annotation.SuppressLint
 import android.content.Context

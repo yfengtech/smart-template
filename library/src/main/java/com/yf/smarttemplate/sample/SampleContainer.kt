@@ -1,4 +1,4 @@
-package com.yf.smarttemplate
+package com.yf.smarttemplate.sample
 
 /**
  * demo的包装容器，内存有sample列表和嵌套列表

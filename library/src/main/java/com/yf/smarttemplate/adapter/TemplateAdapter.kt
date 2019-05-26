@@ -1,4 +1,4 @@
-package com.yf.smarttemplate
+package com.yf.smarttemplate.adapter
 
 import android.app.Activity
 import android.content.Intent
@@ -8,6 +8,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
+import com.yf.smarttemplate.sample.MainFragment
+import com.yf.smarttemplate.R
+import com.yf.smarttemplate.sample.ActivitySampleItem
+import com.yf.smarttemplate.sample.ExecutionSampleItem
+import com.yf.smarttemplate.sample.SampleContainer
 
 /**
  * 首页RecyclerView的adapter
@@ -48,7 +53,9 @@ class TemplateAdapter(private val activity: FragmentActivity, private val sample
                     activity.supportFragmentManager.beginTransaction()
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .addToBackStack(null)
-                        .replace(android.R.id.content, MainFragment.newInstance(item.title, item))
+                        .replace(android.R.id.content,
+                            MainFragment.newInstance(item.title, item)
+                        )
                         .commit()
 
                 }
