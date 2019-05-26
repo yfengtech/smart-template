@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Library</string>
+
+    <string name="menu_document">关于</string>
 </resources>

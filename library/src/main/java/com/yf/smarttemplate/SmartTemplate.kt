@@ -15,13 +15,25 @@ object SmartTemplate {
      */
     private lateinit var originTemplateContainer: SampleContainer
 
-    private var appTitle = "origin"
+    /**
+     * app名称
+     */
+    internal var appTitle = "origin"
+    /**
+     * 文档路径
+     */
+    internal var documentPath: String? = null
 
     @JvmStatic
     fun init(application: Application, closure: SampleContainer.() -> Unit) {
         appTitle = getAppName(application)
+
         application.registerActivityLifecycleCallbacks(lifecycle)
+
+        // 跟节点 sample列表
         originTemplateContainer = SampleContainer().apply(closure)
+        //配置文档信息
+        documentPath = application::class.java.getAnnotation(Document::class.java)?.value
     }
 
     private fun getAppName(application: Application): String {
@@ -48,7 +60,10 @@ object SmartTemplate {
                 if (it::class.java.name == getLaunchActivityName(it.application)) {
                     if (it is AppCompatActivity && savedInstanceState == null) {
                         it.supportFragmentManager.beginTransaction()
-                            .add(android.R.id.content, MainFragment.newInstance(appTitle, originTemplateContainer))
+                            .add(
+                                android.R.id.content,
+                                MainFragment.newInstance(appTitle, originTemplateContainer, true)
+                            )
                             .commit()
                     }
                 }

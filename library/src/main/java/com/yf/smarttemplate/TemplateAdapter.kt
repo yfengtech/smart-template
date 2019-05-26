@@ -45,12 +45,12 @@ class TemplateAdapter(private val activity: FragmentActivity, private val sample
                     item.execution?.invoke(context)
                 }
                 is SampleContainer -> {
-                    activity.supportFragmentManager.beginTransaction().apply {
-                        setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        addToBackStack(null)
-                        replace(android.R.id.content, MainFragment.newInstance(item.title, item))
-                        commit()
-                    }
+                    activity.supportFragmentManager.beginTransaction()
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .replace(android.R.id.content, MainFragment.newInstance(item.title, item))
+                        .commit()
+
                 }
             }
         }

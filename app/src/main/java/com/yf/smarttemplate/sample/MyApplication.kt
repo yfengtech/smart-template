@@ -2,8 +2,10 @@ package com.yf.smarttemplate.sample
 
 import android.app.Application
 import android.support.v7.app.AlertDialog
+import com.yf.smarttemplate.Document
 import com.yf.smarttemplate.SmartTemplate
 
+@Document("README.md")
 class MyApplication : Application() {
 
     override fun onCreate() {
