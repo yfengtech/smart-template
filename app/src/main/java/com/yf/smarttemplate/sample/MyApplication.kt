@@ -1,6 +1,7 @@
 package com.yf.smarttemplate.sample
 
 import android.app.Application
+import android.support.v7.app.AlertDialog
 import com.yf.smarttemplate.SmartTemplate
 
 class MyApplication : Application() {
@@ -9,16 +10,34 @@ class MyApplication : Application() {
         super.onCreate()
 
         SmartTemplate.init(this) {
-            item {
-                id = 3
-                title = "title_1"
-                desc = "desc_1"
+
+            activityItem(Sample1Activity::class.java) {
+                title = "activity title 1"
+                desc = "activity desc_1"
             }
-            item {
-                id = 4
-                title = "title_2"
-                desc = "desc_2"
+
+            executionItem {
+                title = "dialog title"
+                desc = "dialog desc"
+                execute {
+                    val dialog = AlertDialog.Builder(it).create()
+                    dialog.setTitle("我是title")
+                    dialog.setMessage("我是message")
+                    dialog.show()
+                }
             }
+
+            itemList {
+                title = "list title"
+                desc = "list desc"
+
+                activityItem(Sample1Activity::class.java) {
+                    title = "activity title 1"
+                    desc = "activity desc_1"
+                }
+            }
+
+
         }
     }
 }

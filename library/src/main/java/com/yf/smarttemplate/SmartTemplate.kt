@@ -5,19 +5,31 @@ import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 
 object SmartTemplate {
 
-    internal val sampleList = mutableListOf<SampleItem>()
+    /**
+     * 原始模板入口
+     */
+    private lateinit var originTemplateContainer: SampleContainer
+
+    private var appTitle = "origin"
 
     @JvmStatic
-    fun init(application: Application, closure: TemplateItem.() -> Unit) {
+    fun init(application: Application, closure: SampleContainer.() -> Unit) {
+        appTitle = getAppName(application)
         application.registerActivityLifecycleCallbacks(lifecycle)
-        TemplateItem().apply(closure)
-        Log.d("SmartTemplate", sampleList.toString())
+        originTemplateContainer = SampleContainer().apply(closure)
+    }
+
+    private fun getAppName(application: Application): String {
+        val packageManager = application.packageManager
+        return packageManager.getPackageInfo(
+            application.packageName,
+            0
+        ).applicationInfo.loadLabel(packageManager) as String
     }
 
     private fun getLaunchActivityName(application: Application): String? {
@@ -26,13 +38,18 @@ object SmartTemplate {
         return launchIntent?.component?.className
     }
 
-    val lifecycle = object : Application.ActivityLifecycleCallbacks {
+    /**
+     * 监听activity生命周期，拦截launchActivity并替换
+     */
+    private val lifecycle = object : Application.ActivityLifecycleCallbacks {
         override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
             activity?.let {
                 // 如果当前activity是启动页
                 if (it::class.java.name == getLaunchActivityName(it.application)) {
                     if (it is AppCompatActivity && savedInstanceState == null) {
-                        it.supportFragmentManager.beginTransaction().add(android.R.id.content, MainFragment()).commit()
+                        it.supportFragmentManager.beginTransaction()
+                            .add(android.R.id.content, MainFragment.newInstance(appTitle, originTemplateContainer))
+                            .commit()
                     }
                 }
             }
@@ -65,18 +82,5 @@ object SmartTemplate {
         override fun onActivityDestroyed(activity: Activity?) {}
         override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {}
         override fun onActivityStopped(activity: Activity?) {}
-    }
-}
-
-class TemplateItem {
-
-    fun item(closure: SampleItem.() -> Unit) {
-        SmartTemplate.sampleList.add(SampleItem().apply(closure))
-    }
-}
-
-class SampleItem(var id: Int = 0, var title: String = "default title", var desc: String = "default desc") {
-    override fun toString(): String {
-        return "SampleItem(id=$id, title='$title', desc='$desc')"
     }
 }
