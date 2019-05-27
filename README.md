@@ -34,6 +34,11 @@ implementation 'com.github.moonlight920:SmartTemplate:1.0.2'
 ```
 
 ## 使用
+在androidmanifest文件中，application的theme需要继承`SampleAppTheme`
+例如android:theme="@style/AppTheme"，则
+```xml
+<style name="AppTheme" parent="SampleAppTheme"/>
+```
 自定义的application即可
 ```kotlin
 @Document("README.md") // 可选，此为项目中assets中的文件
