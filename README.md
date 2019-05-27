@@ -20,7 +20,7 @@
 
 ## 引入
 ```groovy
-implementation 'com.github.moonlight920:SmartTemplate:1.0.1'
+implementation 'com.github.moonlight920:SmartTemplate:1.0.2'
 ```
 
 ## 使用
