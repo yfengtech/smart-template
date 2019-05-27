@@ -3,6 +3,8 @@
 
 你不需要重复的写的DemoActivity，不需要重复的画UI演示demo
 
+此库支持打开activity，fragment或直接运行代码(用于调试dialog等功能)
+
 引入此库，节省时间，只需要写你关心的东西
 
 ![演示](https://raw.githubusercontent.com/moonlight920/SmartTemplate/b5cc7ff0634a4001da57bf1c330de32af982485f/album/samrt_template.gif)  
@@ -36,6 +38,11 @@ class MyApplication : Application() {
                 title = "activity title 1"
                 desc = "activity desc_1"
             }
+            // 使用fragment替换主内容区
+            fragmentItem(Sample1Fragment::class.java) {
+                title = "fragment title"
+                desc = "fragment desc"
+            }
             // 直接运行`execute`中的代码
             executionItem {
                 title = "dialog title"
@@ -54,10 +61,10 @@ class MyApplication : Application() {
 
                 //可嵌套加入activityItem/executionItem/itemList
                 activityItem{
-                    ...
+                    //...
                 }
                 itemList{
-                    ...
+                    //...
                 }
             }
 
