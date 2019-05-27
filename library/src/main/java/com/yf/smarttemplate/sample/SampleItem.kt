@@ -17,6 +17,11 @@ open class SampleItem(var title: String = "", var desc: String = "") : Serializa
 class ActivitySampleItem(val clazz: Class<*>) : SampleItem()
 
 /**
+ * 打开fragment的item
+ */
+class FragmentSampleItem(val clazz: Class<*>) : SampleItem()
+
+/**
  * 可直接执行的item
  */
 class ExecutionSampleItem : SampleItem() {

@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import com.yf.smarttemplate.R
 import com.yf.smarttemplate.adapter.TemplateAdapter
 import com.yf.smarttemplate.doc.DocumentFragment
+import com.yf.smarttemplate.replaceFragmentAddToBackStack
 import kotlinx.android.synthetic.main.fragment_main.*
 
 private const val ARG_PARAM1 = "param1"
@@ -73,16 +74,9 @@ class MainFragment : Fragment(), Toolbar.OnMenuItemClickListener {
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.action_document -> {
-                activity!!.supportFragmentManager.beginTransaction()
-                    .replace(
-                        android.R.id.content,
-                        DocumentFragment.newInstance(
-                            title!!, "readMe.md"
-                        )
-                    )
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit()
+                activity!!.replaceFragmentAddToBackStack(
+                    DocumentFragment.newInstance(title!!, "readMe.md")
+                )
                 true
             }
             else -> super.onOptionsItemSelected(item)

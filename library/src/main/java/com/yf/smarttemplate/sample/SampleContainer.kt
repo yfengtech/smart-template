@@ -21,6 +21,14 @@ class SampleContainer : SampleItem() {
         sampleList.add(ActivitySampleItem(clazz).apply(closure))
     }
 
+    /**
+     * 使用fragment需注意，默认将fragment加入后退栈
+     * 所以在fragment中想后退，不要直接finish，请调用`activity.supportFragmentManager.popBackStack()`
+     */
+    fun fragmentItem(clazz: Class<*>, closure: FragmentSampleItem.() -> Unit){
+        sampleList.add(FragmentSampleItem(clazz).apply(closure))
+    }
+
     fun executionItem(closure: ExecutionSampleItem.() -> Unit) {
         sampleList.add(ExecutionSampleItem().apply(closure))
     }

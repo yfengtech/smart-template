@@ -2,17 +2,15 @@ package com.yf.smarttemplate.adapter
 
 import android.app.Activity
 import android.content.Intent
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import com.yf.smarttemplate.sample.MainFragment
 import com.yf.smarttemplate.R
-import com.yf.smarttemplate.sample.ActivitySampleItem
-import com.yf.smarttemplate.sample.ExecutionSampleItem
-import com.yf.smarttemplate.sample.SampleContainer
+import com.yf.smarttemplate.replaceFragmentAddToBackStack
+import com.yf.smarttemplate.sample.*
 
 /**
  * 首页RecyclerView的adapter
@@ -46,21 +44,19 @@ class TemplateAdapter(private val activity: FragmentActivity, private val sample
                     if (Activity::class.java.isAssignableFrom(item.clazz))
                         context.startActivity(Intent(context, item.clazz))
                 }
+                is FragmentSampleItem -> {
+                    if (Fragment::class.java.isAssignableFrom(item.clazz)) {
+                        val fragment = item.clazz.newInstance() as Fragment
+                        activity.replaceFragmentAddToBackStack(fragment)
+                    }
+                }
                 is ExecutionSampleItem -> {
                     item.execution?.invoke(context)
                 }
                 is SampleContainer -> {
-                    activity.supportFragmentManager.beginTransaction()
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack(null)
-                        .replace(android.R.id.content,
-                            MainFragment.newInstance(item.title, item)
-                        )
-                        .commit()
-
+                    activity.replaceFragmentAddToBackStack(MainFragment.newInstance(item.title, item))
                 }
             }
         }
     }
-
 }

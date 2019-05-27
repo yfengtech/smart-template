@@ -29,6 +29,11 @@ class MyApplication : Application() {
                 }
             }
 
+            fragmentItem(Sample1Fragment::class.java) {
+                title = "fragment title"
+                desc = "fragment desc"
+            }
+
             itemList {
                 title = "list title"
                 desc = "list desc"
