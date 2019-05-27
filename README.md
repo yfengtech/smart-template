@@ -9,7 +9,7 @@
 
 ![演示](https://raw.githubusercontent.com/moonlight920/SmartTemplate/b5cc7ff0634a4001da57bf1c330de32af982485f/album/samrt_template.gif)  
 
-[点此下载apk](https://raw.githubusercontent.com/moonlight920/SmartTemplate/248e5989b0cc5e845d102daf7f1a2a6c6cee7c0e/app-debug.apk)
+[点此下载apk](https://raw.githubusercontent.com/moonlight920/SmartTemplate/master/app-debug.apk)
 
 ## 前提
 使用此库，需注意如下
