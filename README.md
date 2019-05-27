@@ -19,6 +19,16 @@
 * 自定义一个application
 
 ## 引入
+根目录的build.gradle加入
+```groovy
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+modul中
 ```groovy
 implementation 'com.github.moonlight920:SmartTemplate:1.0.2'
 ```
