@@ -43,8 +43,6 @@ class MyApplication : Application() {
                     desc = "activity desc_1"
                 }
             }
-
-
         }
     }
 }

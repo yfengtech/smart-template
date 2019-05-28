@@ -1,10 +1,11 @@
 package com.yf.smarttemplate
 
+import android.app.Activity
 import android.app.Application
 import android.content.Intent
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentTransaction
+import android.support.v7.app.AppCompatActivity
 
 /**
  * 获取app的名称，即为AndroidManifest中application中的label
@@ -25,13 +26,33 @@ internal fun Application.getLaunchActivityName(): String? {
 }
 
 /**
- * 替换全局内容fragment，并且加入后退栈
+ * 替换全局内容fragment，并且加入后退栈；修改ActionBar的title
  */
-internal fun FragmentActivity.replaceFragmentAddToBackStack(fragment: Fragment) {
+internal fun Activity.replaceFragmentAndTitle(fragment: Fragment, title: String? = null) {
+
+    if (this !is AppCompatActivity) throw IllegalArgumentException("Activity must be AppCompatActivity")
+
     supportFragmentManager.beginTransaction().apply {
         setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         addToBackStack(null)
         replace(android.R.id.content, fragment)
         commit()
+    }
+
+    if (!title.isNullOrBlank()) {
+        supportActionBar?.title = title
+    }
+}
+
+internal fun Activity.setActionBarTitle(title: String?) {
+    if (!title.isNullOrBlank() && this is AppCompatActivity) {
+        supportActionBar?.title = title
+    }
+}
+
+internal fun Activity.setActionBarBackShow(isShow: Boolean) {
+    if (this is AppCompatActivity) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(isShow)
+        supportActionBar?.setHomeButtonEnabled(isShow)
     }
 }

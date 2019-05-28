@@ -26,6 +26,11 @@ object SmartTemplate {
      */
     internal var documentPath: String? = null
 
+    /**
+     * 第一次启动app，移除首页内控件
+     */
+    private var isFirstStart = true
+
     @JvmStatic
     fun init(application: Application, closure: SampleContainer.() -> Unit) {
         appTitle = application.getAppName()
@@ -41,17 +46,29 @@ object SmartTemplate {
      * 监听activity生命周期，拦截launchActivity并替换
      */
     private val lifecycle = object : Application.ActivityLifecycleCallbacks {
-        override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-            activity?.let {
+        override fun onActivityCreated(act: Activity?, savedInstanceState: Bundle?) {
+            act?.let { activity ->
+                // 必须是AppCompatActivity才能往下进行
+                if (activity !is AppCompatActivity) return
+
                 // 如果当前activity是启动页
-                if (it::class.java.name == it.application.getLaunchActivityName()) {
-                    if (it is AppCompatActivity && savedInstanceState == null) {
-                        it.supportFragmentManager.beginTransaction()
+                if (activity::class.java.name == activity.application.getLaunchActivityName()) {
+
+                    // 控制ActionBar左边`返回按钮`的显示和隐藏
+                    activity.supportFragmentManager.addOnBackStackChangedListener {
+                        val stackCount = activity.supportFragmentManager.backStackEntryCount
+                        activity.setActionBarBackShow(stackCount > 0)
+                    }
+
+                    // 启动home fragment
+                    if (savedInstanceState == null) {
+                        activity.supportFragmentManager.beginTransaction()
                             .add(
                                 android.R.id.content,
-                                MainFragment.newInstance(appTitle, originTemplateContainer, true)
+                                MainFragment.newInstance(originTemplateContainer, true)
                             )
                             .commit()
+                        activity.setActionBarTitle(appTitle)
                     }
                 }
             }
@@ -59,8 +76,11 @@ object SmartTemplate {
 
         override fun onActivityStarted(activity: Activity?) {
             activity?.let {
-                // 如果当前activity是启动页
-                if (it::class.java.name == it.application.getLaunchActivityName()) {
+                // 必须是AppCompatActivity才能往下进行
+                if (it !is AppCompatActivity) return
+
+                // 如果当前activity是启动页,只有第一次启动时执行
+                if (it::class.java.name == it.application.getLaunchActivityName() && isFirstStart) {
                     val contentLayout = it.findViewById<ViewGroup>(android.R.id.content)
                     val sampleFragmentContainer = contentLayout.findViewById<View>(R.id.sampleFragmentContainer)
                     if (sampleFragmentContainer == null) {
@@ -75,6 +95,7 @@ object SmartTemplate {
                             contentLayout.removeView(view)
                         }
                     }
+                    isFirstStart = false
                 }
             }
         }

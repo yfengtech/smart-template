@@ -3,13 +3,13 @@ package com.yf.smarttemplate.adapter
 import android.app.Activity
 import android.content.Intent
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.yf.smarttemplate.R
-import com.yf.smarttemplate.replaceFragmentAddToBackStack
+import com.yf.smarttemplate.replaceFragmentAndTitle
 import com.yf.smarttemplate.sample.*
 
 /**
@@ -17,7 +17,7 @@ import com.yf.smarttemplate.sample.*
  *
  * Created by yf on 2019-05-26.
  */
-class TemplateAdapter(private val activity: FragmentActivity, private val sampleContainer: SampleContainer) :
+class TemplateAdapter(private val activity: AppCompatActivity, private val sampleContainer: SampleContainer) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val layoutInflate = LayoutInflater.from(activity)
@@ -47,14 +47,14 @@ class TemplateAdapter(private val activity: FragmentActivity, private val sample
                 is FragmentSampleItem -> {
                     if (Fragment::class.java.isAssignableFrom(item.clazz)) {
                         val fragment = item.clazz.newInstance() as Fragment
-                        activity.replaceFragmentAddToBackStack(fragment)
+                        activity.replaceFragmentAndTitle(fragment,item.title)
                     }
                 }
                 is ExecutionSampleItem -> {
                     item.execution?.invoke(context)
                 }
                 is SampleContainer -> {
-                    activity.replaceFragmentAddToBackStack(MainFragment.newInstance(item.title, item))
+                    activity.replaceFragmentAndTitle(MainFragment.newInstance(item),item.title)
                 }
             }
         }
