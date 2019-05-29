@@ -1,5 +1,8 @@
 package com.yf.smarttemplate.sample
 
+import android.support.v4.app.Fragment
+import com.yf.smarttemplate.fragment.SmartFragment
+
 /**
  * demo的包装容器，内存有sample列表和嵌套列表
  *
@@ -25,7 +28,7 @@ class SampleContainer : SampleItem() {
      * 使用fragment需注意，默认将fragment加入后退栈
      * 所以在fragment中想后退，不要直接finish，请调用`activity.supportFragmentManager.popBackStack()`
      */
-    fun fragmentItem(clazz: Class<*>, closure: FragmentSampleItem.() -> Unit){
+    fun <T:SmartFragment> fragmentItem(clazz: Class<T>, closure: FragmentSampleItem.() -> Unit) {
         sampleList.add(FragmentSampleItem(clazz).apply(closure))
     }
 

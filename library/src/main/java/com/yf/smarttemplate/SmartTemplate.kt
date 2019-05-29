@@ -65,10 +65,10 @@ object SmartTemplate {
                         activity.supportFragmentManager.beginTransaction()
                             .add(
                                 android.R.id.content,
-                                MainFragment.newInstance(originTemplateContainer, true)
+                                MainFragment.newInstance(originTemplateContainer, true),
+                                appTitle
                             )
                             .commit()
-                        activity.setActionBarTitle(appTitle)
                     }
                 }
             }

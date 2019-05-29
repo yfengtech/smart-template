@@ -28,19 +28,15 @@ internal fun Application.getLaunchActivityName(): String? {
 /**
  * 替换全局内容fragment，并且加入后退栈；修改ActionBar的title
  */
-internal fun Activity.replaceFragmentAndTitle(fragment: Fragment, title: String? = null) {
+internal fun Activity.replaceFragmentAndTitle(fragment: Fragment, titleTag: String? = null) {
 
     if (this !is AppCompatActivity) throw IllegalArgumentException("Activity must be AppCompatActivity")
 
     supportFragmentManager.beginTransaction().apply {
         setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         addToBackStack(null)
-        replace(android.R.id.content, fragment)
+        replace(android.R.id.content, fragment, titleTag)
         commit()
-    }
-
-    if (!title.isNullOrBlank()) {
-        supportActionBar?.title = title
     }
 }
 

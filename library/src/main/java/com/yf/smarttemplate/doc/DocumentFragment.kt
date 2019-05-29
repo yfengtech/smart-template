@@ -1,11 +1,9 @@
 package com.yf.smarttemplate.doc
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.yf.smarttemplate.R
+import com.yf.smarttemplate.fragment.SmartFragment
 import kotlinx.android.synthetic.main.fragment_document.*
 
 private const val ARG_PARAM1 = "param1"
@@ -13,7 +11,7 @@ private const val ARG_PARAM1 = "param1"
 /**
  * Created by songyifeng on 2019-05-24.
  */
-internal class DocumentFragment : Fragment() {
+internal class DocumentFragment : SmartFragment() {
 
     private var mDocumentPath: String? = null
 
@@ -33,6 +31,11 @@ internal class DocumentFragment : Fragment() {
         mDocumentPath?.let {
             markdownView.loadMarkdownFromAssets(it)
         }
+    }
+
+    // 文档页，不需要创建菜单
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+//        super.onCreateOptionsMenu(menu, inflater)
     }
 
 
