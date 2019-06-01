@@ -7,9 +7,11 @@
 
 引入此库，节省时间，只需要写你关心的东西
 
-![演示](https://raw.githubusercontent.com/moonlight920/SmartTemplate/b5cc7ff0634a4001da57bf1c330de32af982485f/album/samrt_template.gif)  
+> 注意：使用fragment时需继承SmartFragment，以便接管生命周期和返回键
 
-[点此下载apk](https://raw.githubusercontent.com/moonlight920/SmartTemplate/248e5989b0cc5e845d102daf7f1a2a6c6cee7c0e/app-debug.apk)
+![演示](https://raw.githubusercontent.com/moonlight920/SmartTemplate/b5cc7ff0634a4001da57bf1c330de32af982485f/album/samrt_template.gif)
+
+[点此下载apk](https://raw.githubusercontent.com/moonlight920/SmartTemplate/master/app-debug.apk)
 
 ## 前提
 使用此库，需注意如下
@@ -19,11 +21,26 @@
 * 自定义一个application
 
 ## 引入
+根目录的build.gradle加入
 ```groovy
-implementation 'com.github.moonlight920:SmartTemplate:1.0.1'
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+modul中
+```groovy
+implementation 'com.github.moonlight920:SmartTemplate:1.0.2'
 ```
 
 ## 使用
+在androidmanifest文件中，application的theme需要继承`SampleAppTheme`
+例如android:theme="@style/AppTheme"，则
+```xml
+<style name="AppTheme" parent="SampleAppTheme"/>
+```
 自定义的application即可
 ```kotlin
 @Document("README.md") // 可选，此为项目中assets中的文件
