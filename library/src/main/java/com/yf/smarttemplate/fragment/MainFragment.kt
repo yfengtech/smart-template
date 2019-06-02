@@ -1,13 +1,16 @@
-package com.yf.smarttemplate.sample
+package com.yf.smarttemplate.fragment
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.yf.smarttemplate.R
 import com.yf.smarttemplate.adapter.TemplateAdapter
-import com.yf.smarttemplate.fragment.SmartFragment
+import com.yf.smarttemplate.sample.SampleContainer
 import kotlinx.android.synthetic.main.fragment_main.*
 
 private const val ARG_PARAM1 = "param1"
@@ -16,20 +19,18 @@ private const val ARG_PARAM2 = "param2"
 /**
  * Created by songyifeng on 2019-05-24.
  */
-class MainFragment : SmartFragment() {
+class MainFragment : Fragment() {
 
     private var sampleContainer: SampleContainer? = null
 
     /**
      * `true`表示HomeFragment
      */
-    private var isHome: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             sampleContainer = it.getSerializable(ARG_PARAM1) as SampleContainer
-            isHome = it.getBoolean(ARG_PARAM2)
         }
         sampleContainer ?: throw IllegalArgumentException("SampleContainer is null")
     }
@@ -50,11 +51,10 @@ class MainFragment : SmartFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(sampleContainer: SampleContainer, isHome: Boolean = false) =
+        fun newInstance(sampleContainer: SampleContainer) =
             MainFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable(ARG_PARAM1, sampleContainer)
-                    putBoolean(ARG_PARAM2, isHome)
                 }
             }
     }

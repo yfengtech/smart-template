@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Library</string>
-
-    <string name="menu_document">关于</string>
+    <string name="app_name">SmartTemplate</string>
+    <string name="menu_document">Document</string>
 </resources>

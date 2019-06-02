@@ -6,11 +6,8 @@ import android.content.Intent
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
-import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import android.view.ViewManager
-import android.widget.FrameLayout
 import org.jetbrains.anko.custom.ankoView
 
 /**
@@ -34,22 +31,17 @@ internal fun Application.getLaunchActivityName(): String? {
 /**
  * 替换全局内容fragment，并且加入后退栈；修改ActionBar的title
  */
-internal fun Activity.replaceFragmentAndTitle(fragment: Fragment, titleTag: String? = null) {
+internal fun Activity.replaceFragmentAndTitle(fragment: Fragment, title: String? = null) {
 
     if (this !is AppCompatActivity) throw IllegalArgumentException("Activity must be AppCompatActivity")
 
     supportFragmentManager.beginTransaction().apply {
         setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         addToBackStack(null)
-        replace(android.R.id.custom, fragment, titleTag)
+        replace(android.R.id.custom, fragment)
         commit()
     }
-}
-
-internal fun Activity.setActionBarTitle(title: String?) {
-    if (!title.isNullOrBlank() && this is AppCompatActivity) {
-        supportActionBar?.title = title
-    }
+    supportActionBar?.title = title
 }
 
 internal fun Activity.setActionBarBackShow(isShow: Boolean) {
@@ -59,7 +51,7 @@ internal fun Activity.setActionBarBackShow(isShow: Boolean) {
     }
 }
 
-internal fun Activity.popFragment(){
+internal fun Activity.popFragment() {
     if (this is AppCompatActivity && supportFragmentManager.backStackEntryCount > 0) {
         supportFragmentManager.popBackStack()
     }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.yf.smarttemplate.R
+import com.yf.smarttemplate.fragment.MainFragment
 import com.yf.smarttemplate.replaceFragmentAndTitle
 import com.yf.smarttemplate.sample.*
 

@@ -2,19 +2,18 @@ package com.yf.smarttemplate
 
 import android.app.Activity
 import android.app.Application
-import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
 import com.yf.smarttemplate.doc.Document
-import com.yf.smarttemplate.doc.DocumentFragment
-import com.yf.smarttemplate.sample.MainFragment
+import com.yf.smarttemplate.fragment.MainFragment
 import com.yf.smarttemplate.sample.SampleContainer
-import org.jetbrains.anko.*
+import org.jetbrains.anko.appcompat.v7.themedToolbar
+import org.jetbrains.anko.frameLayout
+import org.jetbrains.anko.matchParent
 import org.jetbrains.anko.support.v4.drawerLayout
+import org.jetbrains.anko.verticalLayout
+import org.jetbrains.anko.wrapContent
 
 object SmartTemplate {
 
@@ -26,7 +25,7 @@ object SmartTemplate {
     /**
      * app名称
      */
-    internal var appTitle = "origin"
+    private var appTitle = "origin"
     /**
      * 文档路径
      */
@@ -35,7 +34,7 @@ object SmartTemplate {
     /**
      * 第一次启动app，移除首页内控件
      */
-    private var isFirstStart = true
+    private var isFirstLaunch = true
 
     @JvmStatic
     fun init(application: Application, closure: SampleContainer.() -> Unit) {
@@ -52,64 +51,68 @@ object SmartTemplate {
      * 监听activity生命周期，拦截launchActivity并替换
      */
     private val lifecycle = object : Application.ActivityLifecycleCallbacks {
-        override fun onActivityStarted(activity: Activity?) {
-            activity?.let {
-                // 必须是AppCompatActivity才能往下进行
-                if (it !is AppCompatActivity) return
-
-                // 如果当前activity是启动页,只有第一次启动时执行
-                if (it::class.java.name == it.application.getLaunchActivityName() && isFirstStart) {
-
-                    // TODO 可以增加toolbar
-
-                    // 替换原布局，重新setContentView
-                    it.drawerLayout {
-                        // fragment 主内容
-                        frameLayout {
-                            id = android.R.id.custom
-                        }
-                        frameLayout {
-                            navigationView {
-                                inflateMenu(R.menu.main_drawer_menu)
-                                setNavigationItemSelectedListener { menuItem ->
-                                    when (menuItem.itemId) {
-                                        R.id.drawer_document -> {
-                                            // TODO 点击文档，禁止重复点
-                                            it.replaceFragmentAndTitle(
-                                                DocumentFragment.newInstance(SmartTemplate.documentPath),
-                                                menuItem.title.toString()
-                                            )
-                                            true
-                                        }
-                                    }
-                                    false
-                                }
-                            }.lparams(width = wrapContent, height = matchParent)
-                        }.lparams(width = wrapContent, height = matchParent, gravity = Gravity.START)
-                            .fitsSystemWindows = true
-                    }.fitsSystemWindows = true
-
-
-                    // 控制ActionBar左边`返回按钮`的显示和隐藏
-                    it.supportFragmentManager.addOnBackStackChangedListener {
-                        val stackCount = it.supportFragmentManager.backStackEntryCount
-                        it.setActionBarBackShow(stackCount > 0)
-                    }
-
-                    // 启动home fragment
-                    it.supportFragmentManager.beginTransaction()
-                        .add(
-                            android.R.id.custom,
-                            MainFragment.newInstance(originTemplateContainer, true),
-                            appTitle
-                        )
-                        .commit()
-                    isFirstStart = false
-                }
+        override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+            if (activity::class.java.name == activity.application.getLaunchActivityName()) {
+                isFirstLaunch = true
             }
         }
 
-        override fun onActivityCreated(act: Activity?, savedInstanceState: Bundle?) {}
+        override fun onActivityStarted(activity: Activity) {
+            // 必须是AppCompatActivity才能往下进行
+            if (activity !is AppCompatActivity) return
+
+            // 如果当前activity是启动页,只有第一次启动时执行
+            if (activity::class.java.name == activity.application.getLaunchActivityName() && isFirstLaunch) {
+                // 替换原布局，重新setContentView
+                activity.drawerLayout {
+                    id = R.id.drawer
+                    verticalLayout {
+                        // toolbar
+                        themedToolbar(R.style.SmartToolBar) {
+                        }.lparams(matchParent, wrapContent).apply {
+                            activity.setSupportActionBar(this)
+                            // 返回按钮点击事件
+                            setNavigationOnClickListener {
+                                activity.popFragment()
+                            }
+                            title = appTitle
+                        }
+                        // fragment 主内容
+                        frameLayout {
+                            id = android.R.id.custom
+                        }.lparams(matchParent, matchParent)
+                    }
+                    // 可拉出的抽屉控件
+                    frameLayout {
+                        navigationView {
+                            activity.initNavigationView(this)
+                        }.lparams(width = wrapContent, height = matchParent)
+                    }.lparams(width = wrapContent, height = matchParent, gravity = Gravity.START)
+                }.fitsSystemWindows = true
+
+
+                // 控制ActionBar左边`返回按钮`的显示和隐藏
+                activity.supportFragmentManager.addOnBackStackChangedListener {
+                    val stackCount = activity.supportFragmentManager.backStackEntryCount
+                    activity.setActionBarBackShow(stackCount > 0)
+                    if (stackCount == 0) {
+                        // 当前在home fragment
+                        activity.supportActionBar?.title = appTitle
+                        activity.supportActionBar?.subtitle = ""
+                    }
+                }
+
+                // 启动home fragment
+                activity.supportFragmentManager.beginTransaction()
+                    .add(
+                        android.R.id.custom,
+                        MainFragment.newInstance(originTemplateContainer)
+                    )
+                    .commit()
+                isFirstLaunch = false
+            }
+        }
+
         override fun onActivityPaused(activity: Activity?) {}
         override fun onActivityResumed(activity: Activity?) {}
         override fun onActivityDestroyed(activity: Activity?) {}

@@ -1,9 +1,9 @@
-package com.yf.smarttemplate.doc
+package com.yf.smarttemplate.fragment
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.*
 import com.yf.smarttemplate.R
-import com.yf.smarttemplate.fragment.SmartFragment
 import kotlinx.android.synthetic.main.fragment_document.*
 
 private const val ARG_PARAM1 = "param1"
@@ -11,7 +11,7 @@ private const val ARG_PARAM1 = "param1"
 /**
  * Created by songyifeng on 2019-05-24.
  */
-internal class DocumentFragment : SmartFragment() {
+internal class DocumentFragment : Fragment() {
 
     private var mDocumentPath: String? = null
 
