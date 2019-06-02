@@ -7,6 +7,8 @@
 
 引入此库，节省时间，只需要写你关心的东西
 
+> 注意：使用fragment时需继承SmartFragment，以便接管生命周期和返回键
+
 ![演示](https://raw.githubusercontent.com/moonlight920/SmartTemplate/b5cc7ff0634a4001da57bf1c330de32af982485f/album/samrt_template.gif)  
 
 [点此下载apk](https://raw.githubusercontent.com/moonlight920/SmartTemplate/master/app-debug.apk)
@@ -30,7 +32,7 @@ allprojects {
 ```
 modul中
 ```groovy
-implementation 'com.github.moonlight920:SmartTemplate:1.0.2'
+implementation 'com.github.moonlight920:SmartTemplate:1.0.3'
 ```
 
 ## 使用
