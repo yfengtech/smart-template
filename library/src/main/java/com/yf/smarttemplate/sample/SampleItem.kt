@@ -1,6 +1,8 @@
 package com.yf.smarttemplate.sample
 
+import android.app.Activity
 import android.content.Context
+import android.support.v4.app.Fragment
 import java.io.Serializable
 
 /**
@@ -14,12 +16,12 @@ open class SampleItem(var title: String = "", var desc: String = "") : Serializa
 /**
  * 打开activity的item
  */
-class ActivitySampleItem(val clazz: Class<*>) : SampleItem()
+class ActivitySampleItem<T:Activity>(val clazz: Class<T>) : SampleItem()
 
 /**
  * 打开fragment的item
  */
-class FragmentSampleItem(val clazz: Class<*>) : SampleItem()
+class FragmentSampleItem<T:Fragment>(val clazz: Class<T>) : SampleItem()
 
 /**
  * 可直接执行的item

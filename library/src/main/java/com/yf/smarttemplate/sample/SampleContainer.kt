@@ -20,7 +20,7 @@ class SampleContainer : SampleItem() {
      * 将一个item加入列表
      */
 
-    fun <T : Activity> activityItem(clazz: Class<T>, closure: ActivitySampleItem.() -> Unit) {
+    fun <T : Activity> activityItem(clazz: Class<T>, closure: ActivitySampleItem<T>.() -> Unit) {
         sampleList.add(ActivitySampleItem(clazz).apply(closure))
     }
 
@@ -28,7 +28,7 @@ class SampleContainer : SampleItem() {
      * 使用fragment需注意，默认将fragment加入后退栈
      * 所以在fragment中想后退，不要直接finish，请调用`activity.supportFragmentManager.popBackStack()`
      */
-    fun <T : Fragment> fragmentItem(clazz: Class<T>, closure: FragmentSampleItem.() -> Unit) {
+    fun <T : Fragment> fragmentItem(clazz: Class<T>, closure: FragmentSampleItem<T>.() -> Unit) {
         sampleList.add(FragmentSampleItem(clazz).apply(closure))
     }
 

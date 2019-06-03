@@ -8,6 +8,7 @@ import android.view.Gravity
 import com.yf.smarttemplate.doc.Document
 import com.yf.smarttemplate.fragment.MainFragment
 import com.yf.smarttemplate.sample.SampleContainer
+import com.yf.smarttemplate.sample.SlidingDrawer
 import org.jetbrains.anko.appcompat.v7.themedToolbar
 import org.jetbrains.anko.frameLayout
 import org.jetbrains.anko.matchParent
@@ -21,6 +22,10 @@ object SmartTemplate {
      * 原始模板入口
      */
     private lateinit var originTemplateContainer: SampleContainer
+    /**
+     * 侧滑抽屉容器
+     */
+    private var mSlidingDrawer: SlidingDrawer? = null
 
     /**
      * app名称
@@ -37,12 +42,14 @@ object SmartTemplate {
     private var isFirstLaunch = true
 
     @JvmStatic
-    fun init(application: Application, closure: SampleContainer.() -> Unit) {
+    fun init(application: Application, slidingDrawer: SlidingDrawer? = null, closure: SampleContainer.() -> Unit) {
         appTitle = application.getAppName()
         // 用于拦截第一个activity，替换成模板样式
         application.registerActivityLifecycleCallbacks(lifecycle)
         // 跟节点 sample列表
         originTemplateContainer = SampleContainer().apply(closure)
+        // 用来填充抽屉控件
+        mSlidingDrawer = slidingDrawer
         //配置文档信息
         documentPath = application::class.java.getAnnotation(Document::class.java)?.value
     }
@@ -82,13 +89,17 @@ object SmartTemplate {
                             id = android.R.id.custom
                         }.lparams(matchParent, matchParent)
                     }
-                    // 可拉出的抽屉控件
-                    frameLayout {
-                        navigationView {
-                            activity.initNavigationView(this)
-                        }.lparams(width = wrapContent, height = matchParent)
-                    }.lparams(width = wrapContent, height = matchParent, gravity = Gravity.START)
-                }.fitsSystemWindows = true
+                    if (mSlidingDrawer != null) {
+                        // 初始化可拉出的抽屉控件
+                        frameLayout {
+                            navigationView {
+                                activity.initNavigationView(mSlidingDrawer!!, this)
+                            }.lparams(width = wrapContent, height = matchParent)
+                        }.lparams(width = wrapContent, height = matchParent, gravity = Gravity.START)
+                    }
+                }.apply {
+                    fitsSystemWindows = true
+                }
 
 
                 // 控制ActionBar左边`返回按钮`的显示和隐藏

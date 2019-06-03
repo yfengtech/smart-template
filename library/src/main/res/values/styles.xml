@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="SmartToolBar">
+    <style name="SmartToolBar" parent="SampleAppTheme">
         <item name="colorControlNormal">@android:color/white</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:background">@color/colorPrimary</item>

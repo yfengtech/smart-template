@@ -41,21 +41,18 @@ class TemplateAdapter(private val activity: AppCompatActivity, private val sampl
             val context = it.context
 
             when (item) {
-                is ActivitySampleItem -> {
-                    if (Activity::class.java.isAssignableFrom(item.clazz))
-                        context.startActivity(Intent(context, item.clazz))
+                is ActivitySampleItem<*> -> {
+                    context.startActivity(Intent(context, item.clazz))
                 }
-                is FragmentSampleItem -> {
-                    if (Fragment::class.java.isAssignableFrom(item.clazz)) {
-                        val fragment = item.clazz.newInstance() as Fragment
-                        activity.replaceFragmentAndTitle(fragment,item.title)
-                    }
+                is FragmentSampleItem<*> -> {
+                    val fragment = item.clazz.newInstance() as Fragment
+                    activity.replaceFragmentAndTitle(fragment, item.title)
                 }
                 is ExecutionSampleItem -> {
                     item.execution?.invoke(context)
                 }
                 is SampleContainer -> {
-                    activity.replaceFragmentAndTitle(MainFragment.newInstance(item),item.title)
+                    activity.replaceFragmentAndTitle(MainFragment.newInstance(item), item.title)
                 }
             }
         }
