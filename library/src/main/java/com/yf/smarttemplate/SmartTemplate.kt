@@ -5,7 +5,6 @@ import android.app.Application
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
-import com.yf.smarttemplate.doc.Document
 import com.yf.smarttemplate.fragment.MainFragment
 import com.yf.smarttemplate.sample.SampleContainer
 import com.yf.smarttemplate.sample.SlidingDrawer
@@ -31,10 +30,6 @@ object SmartTemplate {
      * app名称
      */
     private var appTitle = "origin"
-    /**
-     * 文档路径
-     */
-    internal var documentPath: String? = null
 
     /**
      * 第一次启动app，移除首页内控件
@@ -50,8 +45,6 @@ object SmartTemplate {
         originTemplateContainer = SampleContainer().apply(closure)
         // 用来填充抽屉控件
         mSlidingDrawer = slidingDrawer
-        //配置文档信息
-        documentPath = application::class.java.getAnnotation(Document::class.java)?.value
     }
 
     /**
