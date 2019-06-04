@@ -1,6 +1,5 @@
 package com.yf.smarttemplate.adapter
 
-import android.app.Activity
 import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -11,7 +10,10 @@ import android.widget.TextView
 import com.yf.smarttemplate.R
 import com.yf.smarttemplate.fragment.MainFragment
 import com.yf.smarttemplate.replaceFragmentAndTitle
-import com.yf.smarttemplate.sample.*
+import com.yf.smarttemplate.sample.ActivitySampleItem
+import com.yf.smarttemplate.sample.ExecutionSampleItem
+import com.yf.smarttemplate.sample.FragmentSampleItem
+import com.yf.smarttemplate.sample.SampleContainer
 
 /**
  * 首页RecyclerView的adapter

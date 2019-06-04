@@ -12,7 +12,7 @@ import android.support.v4.app.Fragment
 class SampleContainer : SampleItem() {
 
     /**
-     * demo item list
+     * demo item列表
      */
     internal val sampleList: ArrayList<SampleItem> = ArrayList()
 
@@ -32,6 +32,9 @@ class SampleContainer : SampleItem() {
         sampleList.add(FragmentSampleItem(clazz).apply(closure))
     }
 
+    /**
+     * 直接运行闭包
+     */
     fun executionItem(closure: ExecutionSampleItem.() -> Unit) {
         sampleList.add(ExecutionSampleItem().apply(closure))
     }

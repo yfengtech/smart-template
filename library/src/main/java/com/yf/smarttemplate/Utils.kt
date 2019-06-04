@@ -27,36 +27,3 @@ internal fun Application.getLaunchActivityName(): String? {
     val launchIntent: Intent? = packageManager.getLaunchIntentForPackage(packageName)
     return launchIntent?.component?.className
 }
-
-/**
- * 替换全局内容fragment，并且加入后退栈；修改ActionBar的title
- */
-internal fun Activity.replaceFragmentAndTitle(fragment: Fragment, title: String? = null) {
-
-    if (this !is AppCompatActivity) throw IllegalArgumentException("Activity must be AppCompatActivity")
-
-    supportFragmentManager.beginTransaction().apply {
-        setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-        addToBackStack(null)
-        replace(android.R.id.custom, fragment)
-        commit()
-    }
-    supportActionBar?.title = title
-}
-
-internal fun Activity.setActionBarBackShow(isShow: Boolean) {
-    if (this is AppCompatActivity) {
-        supportActionBar?.setDisplayHomeAsUpEnabled(isShow)
-        supportActionBar?.setHomeButtonEnabled(isShow)
-    }
-}
-
-internal fun Activity.popFragment() {
-    if (this is AppCompatActivity && supportFragmentManager.backStackEntryCount > 0) {
-        supportFragmentManager.popBackStack()
-    }
-}
-
-// 增加anko支持
-internal inline fun ViewManager.navigationView(theme: Int = 0, init: NavigationView.() -> Unit) =
-    ankoView({ NavigationView(it) }, theme, init)

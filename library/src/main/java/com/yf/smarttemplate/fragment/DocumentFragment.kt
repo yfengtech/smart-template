@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.fragment_document.*
 private const val ARG_PARAM1 = "param1"
 
 /**
- * Created by songyifeng on 2019-05-24.
+ * Created by yf on 2019-05-24.
  */
 internal class DocumentFragment : Fragment() {
 
@@ -32,12 +32,6 @@ internal class DocumentFragment : Fragment() {
             markdownView.loadMarkdownFromAssets(it)
         }
     }
-
-    // 文档页，不需要创建菜单
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-//        super.onCreateOptionsMenu(menu, inflater)
-    }
-
 
     companion object {
         @JvmStatic

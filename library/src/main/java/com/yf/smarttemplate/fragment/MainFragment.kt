@@ -14,10 +14,9 @@ import com.yf.smarttemplate.sample.SampleContainer
 import kotlinx.android.synthetic.main.fragment_main.*
 
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
- * Created by songyifeng on 2019-05-24.
+ * Created by yf on 2019-05-24.
  */
 class MainFragment : Fragment() {
 

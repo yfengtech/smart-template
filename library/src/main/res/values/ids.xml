@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="id" name="drawer" />
+    <!--activity内用于替换fragment的主区域容器-->
+    <item type="id" name="fragmentContainer"/>
+    <!--抽屉控件-->
+    <item type="id" name="drawer"/>
 </resources>
