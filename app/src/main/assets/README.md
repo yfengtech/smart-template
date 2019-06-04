@@ -9,7 +9,7 @@
 
 > 注意：使用fragment时需继承SmartFragment，以便接管生命周期和返回键
 
-![演示](https://raw.githubusercontent.com/moonlight920/SmartTemplate/b5cc7ff0634a4001da57bf1c330de32af982485f/album/samrt_template.gif)
+![演示](https://raw.githubusercontent.com/moonlight920/SmartTemplate/b5cc7ff0634a4001da57bf1c330de32af982485f/album/samrt_template.gif)  
 
 [点此下载apk](https://raw.githubusercontent.com/moonlight920/SmartTemplate/master/app-debug.apk)
 
@@ -32,24 +32,79 @@ allprojects {
 ```
 modul中
 ```groovy
-implementation 'com.github.moonlight920:SmartTemplate:1.0.3'
+implementation 'com.github.moonlight920:SmartTemplate:1.1.0'
 ```
 
 ## 使用
 在androidmanifest文件中，application的theme需要继承`SampleAppTheme`
-例如android:theme="@style/AppTheme"，则
+例如android:theme="@style/AppTheme"
 ```xml
 <style name="AppTheme" parent="SampleAppTheme"/>
 ```
-自定义的application即可
+或者直接使用`SampleAppTheme`主题
+```xml
+<application
+            android:name=".sample.MyApplication"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/SampleAppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".sample.Sample1Activity">
+        </activity>
+        <activity android:name=".sample.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+```
+MyApplication是自定义的application
 ```kotlin
-@Document("README.md") // 可选，此为项目中assets中的文件
 class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        SmartTemplate.init(this) {
+        // 可选，定义一个抽屉控件，可从左边拉出来
+        val drawer = SlidingDrawer().apply {
+            item {
+                title = "execute"
+                execute {
+                    val dialog = AlertDialog.Builder(it).create()
+                    dialog.setTitle("我是title")
+                    dialog.setMessage("我是message")
+                    dialog.show()
+                }
+            }
+            item {
+                title = "document"
+                // 可以打开一个asset下的markdown文件                
+                markdownAssetFileName = "README.md"
+            }
+            item {
+                title = "replace fragment"
+                // 可以在主界面加载一个fragment
+                openClazz = Sample1Fragment::class.java
+            }
+            item {
+                groupId = 1
+                iconRes = R.drawable.logo_small
+                title = "start activity"
+                // 可以在主界面打开一个activity               
+                openClazz = Sample1Activity::class.java
+            }
+            item {
+                groupId = 2
+                iconRes = R.drawable.jetpack_logo_small
+                title = "nothing"
+            }
+        }
+        // 没有drawer可以不传
+        SmartTemplate.init(this, drawer) {
             // 可打开一个activity
             activityItem(Sample1Activity::class.java) {
                 title = "activity title 1"
