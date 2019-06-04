@@ -5,6 +5,8 @@ import android.content.Intent
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import com.yf.smarttemplate.fragment.DocumentFragment
 import com.yf.smarttemplate.sample.SlidingDrawer
 
@@ -12,6 +14,17 @@ import com.yf.smarttemplate.sample.SlidingDrawer
  * Created by yf.
  * @date 2019-06-02
  */
+internal fun Activity.initToolbar(toolbar: Toolbar, title: String) {
+    (this as? AppCompatActivity)?.apply {
+        setSupportActionBar(toolbar)
+        // 返回按钮点击事件
+        toolbar.setNavigationOnClickListener {
+            popFragment()
+        }
+        toolbar.title = title
+    }
+}
+
 internal fun Activity.initNavigationView(slidingDrawer: SlidingDrawer, navigationView: NavigationView) {
     // 设置header
     navigationView.inflateHeaderView(R.layout.nav_header)

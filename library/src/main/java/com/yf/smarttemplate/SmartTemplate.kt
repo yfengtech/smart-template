@@ -67,15 +67,10 @@ object SmartTemplate {
                 activity.drawerLayout {
                     id = R.id.drawer
                     verticalLayout {
-                        // toolbar
                         themedToolbar(R.style.SmartToolBar) {
                         }.lparams(matchParent, wrapContent).apply {
-                            activity.setSupportActionBar(this)
-                            // 返回按钮点击事件
-                            setNavigationOnClickListener {
-                                activity.popFragment()
-                            }
-                            title = appTitle
+                            activity.initToolbar(this,appTitle)
+
                         }
                         // fragment 主内容
                         frameLayout {
@@ -102,7 +97,6 @@ object SmartTemplate {
                     if (stackCount == 0) {
                         // 当前在home fragment
                         activity.supportActionBar?.title = appTitle
-                        activity.supportActionBar?.subtitle = ""
                     }
                 }
 
