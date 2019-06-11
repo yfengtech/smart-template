@@ -72,10 +72,7 @@ class MyApplication : Application() {
             item {
                 title = "execute"
                 execute {
-                    val dialog = AlertDialog.Builder(it).create()
-                    dialog.setTitle("我是title")
-                    dialog.setMessage("我是message")
-                    dialog.show()
+                    // ...
                 }
             }
             item {
@@ -84,21 +81,11 @@ class MyApplication : Application() {
                 markdownAssetFileName = "README.md"
             }
             item {
+	    	groupId = 1
+		iconRes = R.drawable.logo_small
                 title = "replace fragment"
                 // 可以在主界面加载一个fragment
                 openClazz = Sample1Fragment::class.java
-            }
-            item {
-                groupId = 1
-                iconRes = R.drawable.logo_small
-                title = "start activity"
-                // 可以在主界面打开一个activity               
-                openClazz = Sample1Activity::class.java
-            }
-            item {
-                groupId = 2
-                iconRes = R.drawable.jetpack_logo_small
-                title = "nothing"
             }
         }
         // 没有drawer可以不传
@@ -110,26 +97,14 @@ class MyApplication : Application() {
             }
             // 使用fragment替换主内容区
             fragmentItem(Sample1Fragment::class.java) {
-                title = "fragment title"
-                desc = "fragment desc"
+                // ...
             }
             // 直接运行`execute`中的代码
             executionItem {
-                title = "dialog title"
-                desc = "dialog desc"
-                execute {
-                    val dialog = AlertDialog.Builder(it).create()
-                    dialog.setTitle("我是title")
-                    dialog.setMessage("我是message")
-                    dialog.show()
-                }
+                // ...
             }
             // 嵌套列表，点击进入下一级
             itemList {
-                title = "list title"
-                desc = "list desc"
-
-                //可嵌套加入activityItem/executionItem/itemList
                 activityItem{
                     //...
                 }
@@ -137,8 +112,6 @@ class MyApplication : Application() {
                     //...
                 }
             }
-
-
         }
     }
 }
