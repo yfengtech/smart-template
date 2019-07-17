@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.ViewManager
 import org.jetbrains.anko.custom.ankoView
 
@@ -26,4 +27,11 @@ internal fun Application.getLaunchActivityName(): String? {
     // 获取app的启动intent
     val launchIntent: Intent? = packageManager.getLaunchIntentForPackage(packageName)
     return launchIntent?.component?.className
+}
+
+val DEBUG = true
+internal inline fun <reified T : Any> T.debugLog(value: String) {
+    if (DEBUG) {
+        Log.d("SmartTemplate", this::class.java.simpleName + value)
+    }
 }

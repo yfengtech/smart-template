@@ -4,8 +4,13 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.yf.smarttemplate.fragment.addHomeFragment
+import com.yf.smarttemplate.fragment.registerFragmentLifecycle
 import com.yf.smarttemplate.sample.SampleContainer
 import com.yf.smarttemplate.sample.SlidingDrawer
+import com.yf.smarttemplate.ui.MainUI
+import com.yf.smarttemplate.ui.replaceContentView
+import com.yf.smarttemplate.ui.setToolbarBackListener
 
 object SmartTemplate {
 
@@ -46,8 +51,11 @@ object SmartTemplate {
                 activity.replaceContentView()
                 // 控制ActionBar左边`返回按钮`的显示和隐藏
                 activity.setToolbarBackListener()
+                // 注册fragment lifecycle
+                activity.registerFragmentLifecycle()
                 // 启动home fragment
                 activity.addHomeFragment()
+
                 isFirstLaunch = false
             }
         }

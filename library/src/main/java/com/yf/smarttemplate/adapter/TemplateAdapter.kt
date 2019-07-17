@@ -1,6 +1,7 @@
 package com.yf.smarttemplate.adapter
 
 import android.content.Intent
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
@@ -8,8 +9,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.yf.smarttemplate.R
+import com.yf.smarttemplate.constants.Params
 import com.yf.smarttemplate.fragment.MainFragment
-import com.yf.smarttemplate.replaceFragmentAndTitle
+import com.yf.smarttemplate.fragment.replaceFragment
 import com.yf.smarttemplate.sample.ActivitySampleItem
 import com.yf.smarttemplate.sample.ExecutionSampleItem
 import com.yf.smarttemplate.sample.FragmentSampleItem
@@ -48,13 +50,16 @@ class TemplateAdapter(private val activity: AppCompatActivity, private val sampl
                 }
                 is FragmentSampleItem<*> -> {
                     val fragment = item.clazz.newInstance() as Fragment
-                    activity.replaceFragmentAndTitle(fragment, item.title)
+                    fragment.arguments = Bundle().apply {
+                        putString(Params.KEY_FRAGMENT_TITLE, item.title)
+                    }
+                    activity.replaceFragment(fragment)
                 }
                 is ExecutionSampleItem -> {
                     item.execution?.invoke(context)
                 }
                 is SampleContainer -> {
-                    activity.replaceFragmentAndTitle(MainFragment.newInstance(item), item.title)
+                    activity.replaceFragment(MainFragment.newInstance(item, item.title))
                 }
             }
         }
