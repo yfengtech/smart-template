@@ -30,7 +30,7 @@ allprojects {
 ```
 modul中
 ```groovy
-implementation 'com.github.moonlight920:SmartTemplate:1.1.0'
+implementation 'com.github.moonlight920:SmartTemplate:1.1.1'
 ```
 
 ## 使用
