@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment
  * Created by yf.
  * @date 2019-05-26
  */
-class SampleContainer : SampleItem() {
+open class SampleContainer : SampleItem() {
 
     /**
      * demo item列表
@@ -40,9 +40,17 @@ class SampleContainer : SampleItem() {
     }
 
     /**
+     * 添加一个子列表
+     */
+    fun itemList(container: SampleContainer) {
+        sampleList.add(container)
+    }
+
+    /**
      * 嵌套列表
      */
     fun itemList(closure: SampleContainer.() -> Unit) {
-        sampleList.add(SampleContainer().apply(closure))
+        val container = SampleContainer().apply(closure)
+        itemList(container)
     }
 }

@@ -2,9 +2,9 @@ package com.yf.smarttemplate.sample
 
 import android.app.Application
 import android.support.v7.app.AlertDialog
-import android.util.Log
 import com.yf.smarttemplate.R
 import com.yf.smarttemplate.SmartTemplate
+import com.yf.smarttemplate.sample.container.SampleContainer1
 
 class MyApplication : Application() {
 
@@ -66,20 +66,7 @@ class MyApplication : Application() {
                 desc = "fragment desc"
             }
 
-            itemList {
-                title = "list title"
-                desc = "list desc"
-
-                activityItem(Sample1Activity::class.java) {
-                    title = "activity title 1"
-                    desc = "activity desc_1"
-                }
-
-                fragmentItem(Sample1Fragment::class.java) {
-                    title = "fragment title"
-                    desc = "fragment desc"
-                }
-            }
+            itemList(SampleContainer1())
         }
     }
 }

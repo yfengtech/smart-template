@@ -21,12 +21,18 @@ object SmartTemplate {
 
     @JvmStatic
     fun init(application: Application, slidingDrawer: SlidingDrawer? = null, closure: SampleContainer.() -> Unit) {
+        val sample = SampleContainer().apply(closure)
+        init(application, slidingDrawer, sample)
+    }
+
+    @JvmStatic
+    fun init(application: Application, slidingDrawer: SlidingDrawer? = null, sampleContainer: SampleContainer) {
         // 获取应用的名称
         MainUI.appTitle = application.getAppName()
         // 用于拦截第一个activity，替换成模板样式
         application.registerActivityLifecycleCallbacks(lifecycle)
         // 跟节点 sample列表
-        MainUI.originTemplateContainer = SampleContainer().apply(closure)
+        MainUI.originTemplateContainer = sampleContainer
         // 用来填充抽屉控件
         MainUI.slidingDrawer = slidingDrawer
     }
