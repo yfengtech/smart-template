@@ -18,10 +18,10 @@ object DataProvider {
         val list = ArrayList<String>()
 
         getDataJsonList().forEachIndexed { index, jsonObject ->
-            list.add(jsonObject.optString("name"))
-            if (count != null && index > count) {
+            if (count != null && index >= count) {
                 return list
             }
+            list.add(jsonObject.optString("name"))
         }
         return list
     }
@@ -34,10 +34,10 @@ object DataProvider {
         val list = ArrayList<String>()
 
         getDataJsonList().forEachIndexed { index, jsonObject ->
-            list.add(jsonObject.optString("en"))
-            if (count != null && index > count) {
+            if (count != null && index >= count) {
                 return list
             }
+            list.add(jsonObject.optString("en"))
         }
         return list
     }

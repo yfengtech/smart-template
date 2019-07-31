@@ -12,14 +12,18 @@ import android.widget.TextView
 /**
  * 用于快速生成RecyclerView列表
  */
-internal class SampleAdapter(private val context: Context, private val useEnglishText: Boolean = true) :
+internal class SampleAdapter(
+    private val context: Context,
+    private val itemCount: Int? = null,
+    private val useEnglishText: Boolean = true
+) :
     RecyclerView.Adapter<SampleHolder>() {
 
     private val data by lazy {
         if (useEnglishText)
-            DataProvider.getCountryEnNameList()
+            DataProvider.getCountryEnNameList(itemCount)
         else
-            DataProvider.getCountryNameList()
+            DataProvider.getCountryNameList(itemCount)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleHolder {

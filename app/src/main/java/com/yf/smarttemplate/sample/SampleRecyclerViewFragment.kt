@@ -19,6 +19,6 @@ class SampleRecyclerViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        SmartTemplate.generateSampleData(context!!, recyclerView, useEnglishText = false)
+        SmartTemplate.generateSampleData(context!!, recyclerView)
     }
 }

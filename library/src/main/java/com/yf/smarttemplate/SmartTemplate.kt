@@ -89,10 +89,11 @@ object SmartTemplate {
         context: Context,
         recyclerView: RecyclerView,
         orientation: Int = LinearLayoutManager.VERTICAL,
+        itemCount: Int? = null,
         useEnglishText: Boolean = true
     ) {
         recyclerView.layoutManager = LinearLayoutManager(context, orientation, false)
         recyclerView.addItemDecoration(DividerItemDecoration(context, orientation))
-        recyclerView.adapter = SampleAdapter(context, useEnglishText)
+        recyclerView.adapter = SampleAdapter(context, itemCount, useEnglishText)
     }
 }
