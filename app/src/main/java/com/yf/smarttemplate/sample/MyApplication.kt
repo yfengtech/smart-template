@@ -67,6 +67,11 @@ class MyApplication : Application() {
             }
 
             itemList(SampleContainer1())
+
+            fragmentItem(SampleRecyclerViewFragment::class.java) {
+                title = "列表Sample"
+                desc = "提供RecyclerView的Adapter、Holder和数据"
+            }
         }
     }
 }

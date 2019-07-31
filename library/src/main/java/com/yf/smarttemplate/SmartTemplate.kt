@@ -2,8 +2,13 @@ package com.yf.smarttemplate
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import com.yf.smarttemplate.data.SampleAdapter
 import com.yf.smarttemplate.fragment.addHomeFragment
 import com.yf.smarttemplate.fragment.registerFragmentLifecycle
 import com.yf.smarttemplate.sample.SampleContainer
@@ -71,5 +76,23 @@ object SmartTemplate {
         override fun onActivityDestroyed(activity: Activity?) {}
         override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {}
         override fun onActivityStopped(activity: Activity?) {}
+    }
+
+
+    /**
+     * 为recyclerView 提供默认数据，填充
+     *
+     * orientation:列表方向
+     * useEnglishText:英文数据还是中文数据
+     */
+    fun generateSampleData(
+        context: Context,
+        recyclerView: RecyclerView,
+        orientation: Int = LinearLayoutManager.VERTICAL,
+        useEnglishText: Boolean = true
+    ) {
+        recyclerView.layoutManager = LinearLayoutManager(context, orientation, false)
+        recyclerView.addItemDecoration(DividerItemDecoration(context, orientation))
+        recyclerView.adapter = SampleAdapter(context, useEnglishText)
     }
 }
