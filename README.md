@@ -1,9 +1,11 @@
 # SmartTemplate
-是一个写demo的壳子，用于快捷生成demo应用
+是一个写demo的壳子，用于快速开发，提供一些常用功能，管理页面分组
 
-你不需要重复的写的DemoActivity，不需要重复的画UI演示demo
+## 功能
+* 管理界面分组，支持Activity和Fragment的分组
+* 支持直接打开activity，fragment或直接运行代码(用于调试dialog等功能)
+* 提供一些常用功能，例如快速生成列表数据等
 
-此库支持打开activity，fragment或直接运行代码(用于调试dialog等功能)
 
 引入此库，节省时间，只需要写你关心的东西
 
@@ -13,10 +15,11 @@
 
 ## 前提
 使用此库，需注意如下
-* `minSdkVersion` ≥ 21
+* `minSdkVersion` ≥ 19
 * launcherActivity需要继承`AppCompatActivity`
 * `compileSdkVersion`和`targetSdkVersion`最好为28
 * 自定义一个application
+* 在AndroidManifest中更换默认Theme
 
 ## 引入
 根目录的build.gradle加入
@@ -30,10 +33,11 @@ allprojects {
 ```
 modul中
 ```groovy
-implementation 'com.github.moonlight920:SmartTemplate:1.1.1'
+implementation 'com.github.moonlight920:SmartTemplate:1.1.3'
 ```
 
 ## 使用
+
 在androidmanifest文件中，application的theme需要继承`SampleAppTheme`
 例如android:theme="@style/AppTheme"
 ```xml
@@ -116,3 +120,26 @@ class MyApplication : Application() {
     }
 }
 ```
+
+## 其他功能
+
+### 快速生成列表数据
+
+API
+* orientation 列表方向(默认竖向)
+* useEnglishText：true为英文数据，false为中文数据（默认true）
+```kotlin
+fun generateSampleData(
+        context: Context,
+        recyclerView: RecyclerView,
+        orientation: Int = LinearLayoutManager.VERTICAL,
+        useEnglishText: Boolean = true
+    )
+```
+
+调用
+```kotlin
+SmartTemplate.generateSampleData(context, recyclerView)
+```
+
+
