@@ -1,5 +1,15 @@
 # SmartTemplate
-是一个写demo的壳子，用于快速开发，提供一些常用功能，管理页面分组
+这个项目用来帮助你快速完成示例代码，只需要把你要跳转的界面或者要进行的操作进行一些简单的配置，我会帮你管理分组，添加描述。
+
+一句话来说，这就是个写Demo的壳子。。。
+
+如果想要了解本项目的设计  [点击查看](./document/DESIGN.md)
+## 背景
+在需要写大量的演示或测试项目时，频繁的创建项目，画界面，然后跳转  
+或者需要一些数据时，就写一个循环造了一些假数据出来  
+并且每次这样的示例代码完全没有条理，十分混乱
+
+这个库的产出就是为了整理这些演示和示例代码，让其界面工整，逻辑清晰
 
 ## 功能
 * 管理界面分组，支持Activity和Fragment的分组
@@ -9,111 +19,104 @@
 
 引入此库，节省时间，只需要写你关心的东西
 
-![演示](https://raw.githubusercontent.com/moonlight920/SmartTemplate/b5cc7ff0634a4001da57bf1c330de32af982485f/album/samrt_template.gif)  
+## 演示
 
-[点此下载apk](https://raw.githubusercontent.com/moonlight920/SmartTemplate/master/app-debug.apk)
+| 描述 | 代码 | 结果|
+|---|---|---|
+| 显示一个Fragment | ![](./album/code_fragment.png) |![](./album/fragment.gif)|
+| 打开一个Activity | ![](./album/code_activity.png) |![](./album/activity.gif)|
+| 执行代码块 | ![](./album/code_execute.png) |![](./album/execution.gif)|
+| 分组显示 | ![](./album/code_itemlist.png) |![](./album/itemlist.gif)|
 
-## 前提
-使用此库，需注意如下
-* `minSdkVersion` ≥ 19
-* launcherActivity需要继承`AppCompatActivity`
-* `compileSdkVersion`和`targetSdkVersion`最好为28
-* 自定义一个application
-* 在AndroidManifest中更换默认Theme
+
+[点此下载apk体验](https://raw.githubusercontent.com/yfengtech/SmartTemplate/master/app-debug.apk)
 
 ## 引入
 根目录的build.gradle加入
+
 ```groovy
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+    repositories {
+        maven { url 'https://jitpack.io' }
+        ...
+    }
+}
 ```
 modul中
+
 ```groovy
-implementation 'com.github.moonlight920:SmartTemplate:1.1.3'
+implementation 'com.github.yfengtech:SmartTemplate:1.1.3'
 ```
+
+## 配置
+这个库使用Kotlin开发，使用时需要DSL配置，如果你不熟悉，没关系很简单，根据上面的示例可以轻易操作。（如果源码能给你带来一些帮助，我会很高兴😄）
+
+Gradle配置如下：
+
+* `minSdkVersion` ≥ 19
+* 项目的启动Activity需要继承`AppCompatActivity`（内部会自动拦截，所以这个activity中什么都不需要写）
+* 为了保证版本统一，少出错；`compileSdkVersion`和`targetSdkVersion`最好为28（否则可能会报资源找不到的错，如果你一定要低于28，将库中的`support`包排除）
 
 ## 使用
 
-在androidmanifest文件中，application的theme需要继承`SampleAppTheme`
-例如android:theme="@style/AppTheme"
-```xml
-<style name="AppTheme" parent="SampleAppTheme"/>
-```
-或者直接使用`SampleAppTheme`主题
-```xml
-<application
-            android:name=".sample.MyApplication"
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/SampleAppTheme"
-            tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".sample.Sample1Activity">
-        </activity>
-        <activity android:name=".sample.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+* 自定义一个application，例如
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-    </application>
-```
-MyApplication是自定义的application
 ```kotlin
 class MyApplication : Application() {
+	override fun onCreate() {
+		super.onCreate()
+	}
+}
+```
 
+* 在AndroidManifest中更换默认`android:theme`和`android:name`
+
+```xml
+<application
+	android:name=".MyApplication"
+	android:theme="@style/SampleAppTheme">
+            
+    ...
+</application>
+```
+
+* 在Application直接配置要执行的操作
+
+```kotlin
+class MyApplication : Application() {
+    
     override fun onCreate() {
         super.onCreate()
-        // 可选，定义一个抽屉控件，可从左边拉出来
-        val drawer = SlidingDrawer().apply {
-            item {
-                title = "execute"
-                execute {
-                    // ...
-                }
-            }
-            item {
-                title = "document"
-                // 可以打开一个asset下的markdown文件                
-                markdownAssetFileName = "README.md"
-            }
-            item {
-	    	groupId = 1
-		iconRes = R.drawable.logo_small
-                title = "replace fragment"
-                // 可以在主界面加载一个fragment
-                openClazz = Sample1Fragment::class.java
-            }
-        }
-        // 没有drawer可以不传
-        SmartTemplate.init(this, drawer) {
-            // 可打开一个activity
-            activityItem(Sample1Activity::class.java) {
-                title = "activity title 1"
-                desc = "activity desc_1"
-            }
-            // 使用fragment替换主内容区
+
+        SmartTemplate.init(this) {
             fragmentItem(Sample1Fragment::class.java) {
-                // ...
+                title = "fragment title"
+                desc = "fragment desc"
             }
-            // 直接运行`execute`中的代码
+            activityItem(Sample1Activity::class.java) {
+                title = "Sample Activity"
+                desc = "我是个activity"
+            }
             executionItem {
-                // ...
-            }
-            // 嵌套列表，点击进入下一级
-            itemList {
-                activityItem{
-                    //...
+                title = "弹出dialog"
+                desc = "直接执行代码块，弹出dialog"
+                execute { context ->
+                    AlertDialog.Builder(context)
+                        .setTitle("我是title")
+                        .setMessage("我是message")
+                        .create()
+                        .show()
                 }
-                itemList{
-                    //...
+            }
+            itemList {
+                title = "我是一个分组"
+                fragmentItem(Sample1Fragment::class.java) {
+                    title = "fragment title"
+                    desc = "fragment desc"
+                }
+                activityItem(Sample1Activity::class.java) {
+                    title = "Sample Activity"
+                    desc = "我是个activity"
                 }
             }
         }
@@ -123,23 +126,39 @@ class MyApplication : Application() {
 
 ## 其他功能
 
+后期增加了一些便捷的辅助功能
+
 ### 快速生成列表数据
 
-API
+调用这个函数，接受一个RecyclerView，直接帮你填充数据
+
 * orientation 列表方向(默认竖向)
+* itemCount：需要的item数量
 * useEnglishText：true为英文数据，false为中文数据（默认true）
+
 ```kotlin
 fun generateSampleData(
         context: Context,
         recyclerView: RecyclerView,
         orientation: Int = LinearLayoutManager.VERTICAL,
+        itemCount: Int? = null,
         useEnglishText: Boolean = true
     )
 ```
 
 调用
+
 ```kotlin
 SmartTemplate.generateSampleData(context, recyclerView)
 ```
+
+#### 示例
+![](./album/create_list.gif)
+
+## 最后
+* 如果你觉得还不错，欢迎Star  
+* 如果使用过程中发现问题，欢迎Issues  
+
+> 这个库本人一直在使用，会持续维护下去
 
 

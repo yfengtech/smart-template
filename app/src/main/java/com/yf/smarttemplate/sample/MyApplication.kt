@@ -2,75 +2,47 @@ package com.yf.smarttemplate.sample
 
 import android.app.Application
 import android.support.v7.app.AlertDialog
-import com.yf.smarttemplate.R
 import com.yf.smarttemplate.SmartTemplate
-import com.yf.smarttemplate.sample.container.SampleContainer1
 
 class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
 
-        val drawer = SlidingDrawer().apply {
-            item {
-                title = "execute"
-                execute {
-                    val dialog = AlertDialog.Builder(it).create()
-                    dialog.setTitle("我是title")
-                    dialog.setMessage("我是message")
-                    dialog.show()
-                }
-            }
-            item {
-                title = "document"
-                markdownAssetFileName = "README.md"
-            }
-            item {
-                title = "replace fragment"
-                openClazz = Sample1Fragment::class.java
-            }
-            item {
-                groupId = 1
-                iconRes = R.drawable.jetpack_logo_small
-                title = "start activity"
-                openClazz = Sample1Activity::class.java
-            }
-            item {
-                groupId = 2
-                iconRes = R.drawable.jetpack_logo_small
-                title = "nothing"
-            }
-        }
-
-
-        SmartTemplate.init(this, drawer) {
-
-            activityItem(Sample1Activity::class.java) {
-                title = "activity title 1"
-                desc = "activity desc_1"
-            }
-
-            executionItem {
-                title = "dialog title"
-                desc = "dialog desc"
-                execute {
-                    val dialog = AlertDialog.Builder(it).create()
-                    dialog.setTitle("我是title")
-                    dialog.setMessage("我是message")
-                    dialog.show()
-                }
-            }
-
+        SmartTemplate.init(this) {
             fragmentItem(Sample1Fragment::class.java) {
                 title = "fragment title"
                 desc = "fragment desc"
             }
-
-            itemList(SampleContainer1())
-
+            activityItem(Sample1Activity::class.java) {
+                title = "Sample Activity"
+                desc = "我是个activity"
+            }
+            executionItem {
+                title = "弹出dialog"
+                desc = "直接执行代码块，弹出dialog"
+                execute { context ->
+                    AlertDialog.Builder(context)
+                        .setTitle("我是title")
+                        .setMessage("我是message")
+                        .create()
+                        .show()
+                }
+            }
             fragmentItem(SampleRecyclerViewFragment::class.java) {
-                title = "列表Sample"
-                desc = "提供RecyclerView的Adapter、Holder和数据"
+                title = "列表数据"
+                desc = "一键创建填充列表数据"
+            }
+            itemList {
+                title = "我是一个分组"
+                fragmentItem(Sample1Fragment::class.java) {
+                    title = "fragment title"
+                    desc = "fragment desc"
+                }
+                activityItem(Sample1Activity::class.java) {
+                    title = "Sample Activity"
+                    desc = "我是个activity"
+                }
             }
         }
     }
