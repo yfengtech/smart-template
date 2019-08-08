@@ -23,10 +23,10 @@
 
 | 描述 | 代码 | 结果|
 |---|---|---|
-| 显示一个Fragment | ![](./album/code_fragment.png) |![](./album/fragment.gif)|
-| 打开一个Activity | ![](./album/code_activity.png) |![](./album/activity.gif)|
-| 执行代码块 | ![](./album/code_execute.png) |![](./album/execution.gif)|
-| 分组显示 | ![](./album/code_itemlist.png) |![](./album/itemlist.gif)|
+| 显示一个Fragment | ![](https://github.com/yfengtech/SmartTemplate/raw/master/album/code_fragment.png) |![](https://github.com/yfengtech/SmartTemplate/raw/master/album/fragment.gif)|
+| 打开一个Activity | ![](https://github.com/yfengtech/SmartTemplate/raw/master/album/code_activity.png) |![](https://github.com/yfengtech/SmartTemplate/raw/master/album/activity.gif)|
+| 执行代码块 | ![](https://github.com/yfengtech/SmartTemplate/raw/master/album/code_execute.png) |![](https://github.com/yfengtech/SmartTemplate/raw/master/album/execution.gif)|
+| 分组显示 | ![](https://github.com/yfengtech/SmartTemplate/raw/master/album/code_itemlist.png) |![](https://github.com/yfengtech/SmartTemplate/raw/master/album/itemlist.gif)|
 
 
 [点此下载apk体验](https://raw.githubusercontent.com/yfengtech/SmartTemplate/master/app-debug.apk)
@@ -153,7 +153,7 @@ SmartTemplate.generateSampleData(context, recyclerView)
 ```
 
 #### 示例
-![](./album/create_list.gif)
+![](https://github.com/yfengtech/SmartTemplate/raw/master/album/create_list.gif)
 
 ## 最后
 * 如果你觉得还不错，欢迎Star  
