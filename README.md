@@ -56,6 +56,7 @@ Gradle配置如下：
 * `minSdkVersion` ≥ 19
 * 项目的启动Activity需要继承`AppCompatActivity`（内部会自动拦截，所以这个activity中什么都不需要写）
 * 为了保证版本统一，少出错；`compileSdkVersion`和`targetSdkVersion`最好为28（否则可能会报资源找不到的错，如果你一定要低于28，将库中的`support`包排除）
+* 建议将启动的Activity屏幕方向固定，防止在旋转的时候 UI错乱
 
 ## 使用
 
