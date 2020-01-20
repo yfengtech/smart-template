@@ -5,7 +5,6 @@ import android.support.v7.widget.Toolbar
 import com.yf.smarttemplate.R
 import com.yf.smarttemplate.fragment.popFragment
 import com.yf.smarttemplate.sample.SampleContainer
-import com.yf.smarttemplate.sample.SlidingDrawer
 
 /**
  * Created by yf.
@@ -21,10 +20,6 @@ object MainUI {
      * 原始模板入口
      */
     internal lateinit var originTemplateContainer: SampleContainer
-    /**
-     * 侧滑抽屉容器
-     */
-    internal var slidingDrawer: SlidingDrawer? = null
 }
 
 /**

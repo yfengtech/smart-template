@@ -1,13 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply plugin: 'maven'
+
 def MAVEN_URL = rootProject.ext.maven_url
-allprojects {
-    repositories {
-        maven {
-            url MAVEN_URL
-        }
-    }
-}
+
 tasks.withType(Javadoc) {
     options {
         encoding "UTF-8"
@@ -18,14 +13,6 @@ tasks.withType(Javadoc) {
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
-}
-
-task makeJar(type: Copy) {
-    delete 'build/libs/http.jar'
-    from('build/intermediates/bundles/release/')
-    into('build/libs/')
-    include('classes.jar')
-    rename('classes.jar', 'http.jar')
 }
 
 task javadoc(type: Javadoc) {
