@@ -1,23 +1,32 @@
+ext {
+    //remote repository information
+    user = "yfengtech"
+    version = '1.0.0'
+    group_id = "cn.yfengtech"
+    artifact_id = "smart-template-library"
+    description = "an android template library"
+    maven_url = 'http://yfengtech.cn:8090/repository/maven-releases/'
+}
+
 buildscript {
     ext.kotlin_version = '1.3.21'
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'https://jitpack.io' }
+        maven { url rootProject.ext.maven_url }
         google()
         jcenter()
-        
+
     }
 }
 

@@ -2,14 +2,10 @@ package com.yf.smarttemplate.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.view.Gravity
 import com.yf.smarttemplate.R
 import com.yf.smarttemplate.fragment.popFragment
 import com.yf.smarttemplate.sample.SampleContainer
 import com.yf.smarttemplate.sample.SlidingDrawer
-import org.jetbrains.anko.*
-import org.jetbrains.anko.appcompat.v7.themedToolbar
-import org.jetbrains.anko.support.v4.drawerLayout
 
 /**
  * Created by yf.
@@ -35,33 +31,13 @@ object MainUI {
  * 替换activity内的布局，
  */
 internal fun AppCompatActivity.replaceContentView() {
-    drawerLayout {
-        id = R.id.drawer
-        verticalLayout {
-            themedToolbar(R.style.SmartToolBar) {
-            }.lparams(matchParent, wrapContent).apply {
-                initToolbar(this)
-                title = MainUI.appTitle
-            }
-            // fragment 主内容
-            frameLayout {
-                id = R.id.fragmentContainer
-            }.lparams(matchParent, matchParent)
-        }
-        if (MainUI.slidingDrawer != null) {
-            // 初始化可拉出的抽屉控件
-            frameLayout {
-                navigationView {
-                    initNavigationView(MainUI.slidingDrawer!!, this)
-                }.lparams(wrapContent, matchParent)
-            }.lparams(width = wrapContent, height = matchParent, gravity = Gravity.START)
-        }
-    }.apply {
-        fitsSystemWindows = true
-    }
+    setContentView(R.layout.layout_main)
+    val toolbar = findViewById<Toolbar>(R.id.toolBar)
+    initToolbar(toolbar)
 }
 
 internal fun AppCompatActivity.initToolbar(toolbar: Toolbar) {
+    toolbar.title = MainUI.appTitle
     setSupportActionBar(toolbar)
     // 返回按钮点击事件
     toolbar.setNavigationOnClickListener {

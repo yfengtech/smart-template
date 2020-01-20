@@ -37,7 +37,7 @@
 ```groovy
 allprojects {
     repositories {
-        maven { url 'https://jitpack.io' }
+        maven { url 'http://yfengtech.cn:8090/repository/maven-releases' }
         ...
     }
 }
@@ -45,7 +45,7 @@ allprojects {
 modul中
 
 ```groovy
-implementation 'com.github.yfengtech:SmartTemplate:1.1.3'
+implementation 'cn.yfengtech:smart-template-library:1.0.0'
 ```
 
 ## 配置
@@ -85,7 +85,7 @@ class MyApplication : Application() {
 
 ```kotlin
 class MyApplication : Application() {
-    
+
     override fun onCreate() {
         super.onCreate()
 
