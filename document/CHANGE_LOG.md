@@ -28,3 +28,8 @@ minSdkVersion  21 --> 19
 ### 1.0.0
 
 去掉了Anko库，去掉了drawer
+
+### 1.0.1
+
+将SampleContainer序列化传给Fragment，在保存fragment的state时，会引发writeToParcel的问题
+所以传入之后，将其从arguments中移除

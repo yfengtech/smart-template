@@ -1,7 +1,7 @@
 ext {
     //remote repository information
     user = "yfengtech"
-    version = '1.0.0'
+    version = '1.0.1'
     group_id = "cn.yfengtech"
     artifact_id = "smart-template"
     description = "an android template library"

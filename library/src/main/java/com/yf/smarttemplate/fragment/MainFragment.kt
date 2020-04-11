@@ -34,9 +34,14 @@ class MainFragment : Fragment() {
             sampleContainer = it.getSerializable(ARG_PARAM1) as SampleContainer
         }
         sampleContainer ?: throw IllegalArgumentException("SampleContainer is null")
+        arguments?.remove(ARG_PARAM1)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
@@ -48,13 +53,14 @@ class MainFragment : Fragment() {
         val activity = activity as? AppCompatActivity ?: return
         val layoutManager = LinearLayoutManager(activity)
         recyclerView.layoutManager = layoutManager
-        recyclerView.addItemDecoration(object : DividerItemDecoration(activity, layoutManager.orientation) {})
+        recyclerView.addItemDecoration(object :
+            DividerItemDecoration(activity, layoutManager.orientation) {})
         recyclerView.adapter = TemplateAdapter(activity, sampleContainer!!)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(sampleContainer: SampleContainer,title:String) =
+        fun newInstance(sampleContainer: SampleContainer, title: String) =
             MainFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable(ARG_PARAM1, sampleContainer)
