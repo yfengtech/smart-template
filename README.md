@@ -1,9 +1,9 @@
 # SmartTemplate
-这个项目用来帮助你快速完成示例代码，只需要把你要跳转的界面或者要进行的操作进行一些简单的配置，我会帮你管理分组，添加描述。
+这个项目用来帮助你快速完成Demo示例代码，避免重复的创建UI。
+只需要把你要跳转的界面或者要进行的操作进行一些简单的配置，我会帮你管理分组，添加描述。
 
 一句话来说，这就是个写Demo的壳子。。。
 
-如果想要了解本项目的设计  [点击查看](./document/DESIGN.md)
 ## 背景
 在需要写大量的演示或测试项目时，频繁的创建项目，画界面，然后跳转  
 或者需要一些数据时，就写一个循环造了一些假数据出来  
@@ -45,7 +45,7 @@ allprojects {
 modul中
 
 ```groovy
-implementation 'cn.yfengtech:smart-template-library:1.0.0'
+implementation 'cn.yfengtech:smart-template:1.0.0'
 ```
 
 ## 配置
@@ -54,42 +54,18 @@ implementation 'cn.yfengtech:smart-template-library:1.0.0'
 Gradle配置如下：
 
 * `minSdkVersion` ≥ 19
-* 项目的启动Activity需要继承`AppCompatActivity`（内部会自动拦截，所以这个activity中什么都不需要写）
 * 为了保证版本统一，少出错；`compileSdkVersion`和`targetSdkVersion`最好为28（否则可能会报资源找不到的错，如果你一定要低于28，将库中的`support`包排除）
-* 建议将启动的Activity屏幕方向固定，防止在旋转的时候 UI错乱
 
 ## 使用
 
-* 自定义一个application，例如
+使用起来简单粗暴，在任意一个Activity（继承AppCompatActivity）中，不需要设置布局，框架中会自动设置，调用`SmartTemplate.apply()`即可
 
 ```kotlin
-class MyApplication : Application() {
-	override fun onCreate() {
-		super.onCreate()
-	}
-}
-```
+class MainActivity : AppCompatActivity() {
 
-* 在AndroidManifest中更换默认`android:theme`和`android:name`
-
-```xml
-<application
-	android:name=".MyApplication"
-	android:theme="@style/SampleAppTheme">
-            
-    ...
-</application>
-```
-
-* 在Application直接配置要执行的操作
-
-```kotlin
-class MyApplication : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-
-        SmartTemplate.init(this) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        SmartTemplate.apply(this) {
             fragmentItem(Sample1Fragment::class.java) {
                 title = "fragment title"
                 desc = "fragment desc"
