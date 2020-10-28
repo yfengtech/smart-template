@@ -5,7 +5,7 @@ ext {
     group_id = "cn.yfengtech"
     artifact_id = "smart-template"
     description = "an android template library"
-    maven_url = 'http://yfengtech.cn:8090/repository/maven-releases'
+    maven_url = 'http://yfengtech.cn/nexus/content/repositories/releases'
 }
 
 buildscript {
