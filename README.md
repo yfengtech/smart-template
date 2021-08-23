@@ -37,7 +37,7 @@
 ```groovy
 allprojects {
     repositories {
-        maven { url 'http://yfengtech.cn:8090/repository/maven-releases' }
+        maven { url 'http://maven.yfengtech.cn/nexus/content/repositories/public' }
         ...
     }
 }
