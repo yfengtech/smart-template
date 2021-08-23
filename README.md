@@ -45,7 +45,7 @@ allprojects {
 modul中
 
 ```groovy
-implementation 'cn.yfengtech:smart-template:1.0.1'
+implementation 'cn.yfengtech:smart-template:1.1.0'
 ```
 
 ## 配置
