@@ -1,7 +1,7 @@
 package com.yf.smarttemplate.ui
 
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.yf.smarttemplate.R
 import com.yf.smarttemplate.fragment.popFragment
 import com.yf.smarttemplate.sample.SampleContainer

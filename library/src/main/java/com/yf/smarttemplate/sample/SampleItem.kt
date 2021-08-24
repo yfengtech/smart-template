@@ -2,7 +2,7 @@ package com.yf.smarttemplate.sample
 
 import android.app.Activity
 import android.content.Context
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import java.io.Serializable
 
 /**
@@ -21,7 +21,7 @@ class ActivitySampleItem<T:Activity>(val clazz: Class<T>) : SampleItem()
 /**
  * 打开fragment的item
  */
-class FragmentSampleItem<T:Fragment>(val clazz: Class<T>) : SampleItem()
+class FragmentSampleItem<T: androidx.fragment.app.Fragment>(val clazz: Class<T>) : SampleItem()
 
 /**
  * 可直接执行的item

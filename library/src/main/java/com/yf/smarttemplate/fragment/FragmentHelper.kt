@@ -1,10 +1,10 @@
 package com.yf.smarttemplate.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.yf.smarttemplate.ui.MainUI
 import com.yf.smarttemplate.R
@@ -26,9 +26,9 @@ internal fun AppCompatActivity.addHomeFragment() {
 /**
  * 替换全局内容fragment，并且加入后退栈
  */
-internal fun AppCompatActivity.replaceFragment(fragment: Fragment) {
+internal fun AppCompatActivity.replaceFragment(fragment: androidx.fragment.app.Fragment) {
     supportFragmentManager.beginTransaction().apply {
-        setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+        setTransition(androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
         addToBackStack(null)
         replace(R.id.fragmentContainer, fragment)
         commitAllowingStateLoss()
@@ -51,9 +51,9 @@ internal fun AppCompatActivity.registerFragmentLifecycle() {
 /**
  * fragment生命周期回调，目前为了设置toolbar的title
  */
-class MyFragmentLifecycle : FragmentManager.FragmentLifecycleCallbacks() {
+class MyFragmentLifecycle : androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks() {
 
-    override fun onFragmentViewCreated(fm: FragmentManager, f: Fragment, v: View, savedInstanceState: Bundle?) {
+    override fun onFragmentViewCreated(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment, v: View, savedInstanceState: Bundle?) {
         super.onFragmentViewCreated(fm, f, v, savedInstanceState)
 
         (f.context as? AppCompatActivity)?.supportActionBar?.title =

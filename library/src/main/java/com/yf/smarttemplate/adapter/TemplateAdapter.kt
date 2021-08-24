@@ -2,9 +2,9 @@ package com.yf.smarttemplate.adapter
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -23,18 +23,18 @@ import com.yf.smarttemplate.sample.SampleContainer
  * Created by yf on 2019-05-26.
  */
 class TemplateAdapter(private val activity: AppCompatActivity, private val sampleContainer: SampleContainer) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     private val layoutInflate = LayoutInflater.from(activity)
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return object :
-            RecyclerView.ViewHolder(layoutInflate.inflate(android.R.layout.simple_list_item_2, parent, false)) {}
+            androidx.recyclerview.widget.RecyclerView.ViewHolder(layoutInflate.inflate(android.R.layout.simple_list_item_2, parent, false)) {}
     }
 
     override fun getItemCount(): Int = sampleContainer.sampleList.count()
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         val item = sampleContainer.sampleList[position]
         // 设置涟漪效果
         holder.itemView.setBackgroundResource(R.drawable.ripple_bg)
@@ -49,7 +49,7 @@ class TemplateAdapter(private val activity: AppCompatActivity, private val sampl
                     context.startActivity(Intent(context, item.clazz))
                 }
                 is FragmentSampleItem<*> -> {
-                    val fragment = item.clazz.newInstance() as Fragment
+                    val fragment = item.clazz.newInstance() as androidx.fragment.app.Fragment
                     fragment.arguments = Bundle().apply {
                         putString(Params.KEY_FRAGMENT_TITLE, item.title)
                     }

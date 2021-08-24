@@ -1,10 +1,10 @@
 package com.yf.smarttemplate
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.yf.smarttemplate.data.SampleAdapter
 import com.yf.smarttemplate.fragment.addHomeFragment
 import com.yf.smarttemplate.fragment.registerFragmentLifecycle
@@ -58,13 +58,23 @@ object SmartTemplate {
      */
     fun generateSampleData(
         context: Context,
-        recyclerView: RecyclerView,
-        orientation: Int = LinearLayoutManager.VERTICAL,
+        recyclerView: androidx.recyclerview.widget.RecyclerView,
+        orientation: Int = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
         itemCount: Int? = null,
         useEnglishText: Boolean = true
     ) {
-        recyclerView.layoutManager = LinearLayoutManager(context, orientation, false)
-        recyclerView.addItemDecoration(DividerItemDecoration(context, orientation))
+        recyclerView.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(
+                context,
+                orientation,
+                false
+            )
+        recyclerView.addItemDecoration(
+            androidx.recyclerview.widget.DividerItemDecoration(
+                context,
+                orientation
+            )
+        )
         recyclerView.adapter = SampleAdapter(context, itemCount, useEnglishText)
     }
 }
