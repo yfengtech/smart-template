@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 30
@@ -28,11 +29,40 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.3.0'
 }
 
-apply from: "../maven.gradle"
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+publishing {
+    publications {
+        // 可配置多个发布项
+        aar(MavenPublication) {
+            groupId = 'cn.yfengtech'
+            artifactId = 'smart-template'
+            version = '1.1.2'
+            afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+            artifact generateSourcesJar
+        }
+    }
+    repositories {
+        // 可配置多个repo
+        maven {
+            name = "yfengtech"
+            allowInsecureProtocol = true
+            url = rootProject.ext.maven_url
+            credentials {
+                username = 'yfengtech'
+                password = properties.getProperty("maven.password")
+            }
+        }
+    }
+}
