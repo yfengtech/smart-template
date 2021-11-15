@@ -47,7 +47,7 @@ publishing {
         release(MavenPublication) {
             groupId 'com.github.yfengtech'
             artifactId 'smart-template'
-            version '0.0.2'
+            version '0.0.3'
             afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
             artifact generateSourcesJar
         }

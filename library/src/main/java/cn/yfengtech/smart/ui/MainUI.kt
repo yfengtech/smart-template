@@ -1,10 +1,10 @@
-package cn.yfengtech.smarttemplate.ui
+package cn.yfengtech.smart.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.yf.smarttemplate.R
-import cn.yfengtech.smarttemplate.fragment.popFragment
-import cn.yfengtech.smarttemplate.sample.SampleContainer
+import cn.yfengtech.smart.fragment.popFragment
+import cn.yfengtech.smart.sample.SampleContainer
 
 /**
  * Created by yf.

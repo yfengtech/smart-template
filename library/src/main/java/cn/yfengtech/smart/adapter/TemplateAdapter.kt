@@ -1,4 +1,4 @@
-package cn.yfengtech.smarttemplate.adapter
+package cn.yfengtech.smart.adapter
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.yf.smarttemplate.R
-import cn.yfengtech.smarttemplate.constants.Params
-import cn.yfengtech.smarttemplate.fragment.MainFragment
-import cn.yfengtech.smarttemplate.fragment.replaceFragment
-import cn.yfengtech.smarttemplate.sample.ActivitySampleItem
-import cn.yfengtech.smarttemplate.sample.ExecutionSampleItem
-import cn.yfengtech.smarttemplate.sample.FragmentSampleItem
-import cn.yfengtech.smarttemplate.sample.SampleContainer
+import cn.yfengtech.smart.constants.Params
+import cn.yfengtech.smart.fragment.MainFragment
+import cn.yfengtech.smart.fragment.replaceFragment
+import cn.yfengtech.smart.sample.ActivitySampleItem
+import cn.yfengtech.smart.sample.ExecutionSampleItem
+import cn.yfengtech.smart.sample.FragmentSampleItem
+import cn.yfengtech.smart.sample.SampleContainer
 
 /**
  * 首页RecyclerView的adapter

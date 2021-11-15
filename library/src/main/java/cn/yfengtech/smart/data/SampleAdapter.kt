@@ -1,4 +1,4 @@
-package cn.yfengtech.smarttemplate.data
+package cn.yfengtech.smart.data
 
 import android.R
 import android.content.Context

@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import cn.yfengtech.smarttemplate.SmartTemplate
+import cn.yfengtech.smart.SmartTemplate
 import com.yf.smarttemplate.sample.databinding.FragmentSampleRecyclerviewBinding
 
 class SampleRecyclerViewFragment : Fragment() {

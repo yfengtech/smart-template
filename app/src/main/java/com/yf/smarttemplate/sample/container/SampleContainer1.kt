@@ -2,7 +2,7 @@ package com.yf.smarttemplate.sample.container
 
 import com.yf.smarttemplate.sample.Sample1Activity
 import com.yf.smarttemplate.sample.Sample1Fragment
-import cn.yfengtech.smarttemplate.sample.SampleContainer
+import cn.yfengtech.smart.sample.SampleContainer
 
 class SampleContainer1 : SampleContainer() {
     init {

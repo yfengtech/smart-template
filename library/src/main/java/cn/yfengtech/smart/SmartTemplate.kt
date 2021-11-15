@@ -1,15 +1,15 @@
-package cn.yfengtech.smarttemplate
+package cn.yfengtech.smart
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.yf.smarttemplate.R
-import cn.yfengtech.smarttemplate.data.SampleAdapter
-import cn.yfengtech.smarttemplate.fragment.addHomeFragment
-import cn.yfengtech.smarttemplate.fragment.registerFragmentLifecycle
-import cn.yfengtech.smarttemplate.sample.SampleContainer
-import cn.yfengtech.smarttemplate.ui.MainUI
-import cn.yfengtech.smarttemplate.ui.replaceContentView
-import cn.yfengtech.smarttemplate.ui.setToolbarBackListener
+import cn.yfengtech.smart.data.SampleAdapter
+import cn.yfengtech.smart.fragment.addHomeFragment
+import cn.yfengtech.smart.fragment.registerFragmentLifecycle
+import cn.yfengtech.smart.sample.SampleContainer
+import cn.yfengtech.smart.ui.MainUI
+import cn.yfengtech.smart.ui.replaceContentView
+import cn.yfengtech.smart.ui.setToolbarBackListener
 
 /**
  * 智能Demo模板，常用与写一些demo，避免

@@ -1,4 +1,4 @@
-package cn.yfengtech.smarttemplate.sample
+package cn.yfengtech.smart.sample
 
 import android.app.Activity
 

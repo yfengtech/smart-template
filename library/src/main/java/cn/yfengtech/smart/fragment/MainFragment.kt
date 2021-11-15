@@ -1,4 +1,4 @@
-package cn.yfengtech.smarttemplate.fragment
+package cn.yfengtech.smart.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,10 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yf.smarttemplate.R
-import cn.yfengtech.smarttemplate.adapter.TemplateAdapter
-import cn.yfengtech.smarttemplate.constants.Params
-import cn.yfengtech.smarttemplate.debugLog
-import cn.yfengtech.smarttemplate.sample.SampleContainer
+import cn.yfengtech.smart.adapter.TemplateAdapter
+import cn.yfengtech.smart.constants.Params
+import cn.yfengtech.smart.debugLog
+import cn.yfengtech.smart.sample.SampleContainer
 
 private const val ARG_PARAM1 = "param1"
 

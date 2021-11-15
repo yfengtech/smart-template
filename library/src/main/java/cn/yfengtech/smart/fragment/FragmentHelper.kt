@@ -1,11 +1,11 @@
-package cn.yfengtech.smarttemplate.fragment
+package cn.yfengtech.smart.fragment
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
-import cn.yfengtech.smarttemplate.ui.MainUI
+import cn.yfengtech.smart.ui.MainUI
 import com.yf.smarttemplate.R
-import cn.yfengtech.smarttemplate.constants.Params
+import cn.yfengtech.smart.constants.Params
 
 /**
  * 添加home fragment
