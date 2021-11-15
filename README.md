@@ -37,7 +37,7 @@
 ```groovy
 allprojects {
     repositories {
-        maven { url 'http://maven.yfengtech.cn/nexus/content/repositories/public' }
+        maven { url 'https://jitpack.io' }
         ...
     }
 }
@@ -45,7 +45,7 @@ allprojects {
 modul中
 
 ```groovy
-implementation 'cn.yfengtech:smart-template:1.1.0'
+implementation 'com.github.yfengtech:smart-template:1.0.0'
 ```
 
 ## 配置
