@@ -1,7 +1,6 @@
 ext {
     //remote repository information
     description = "an android template library"
-    maven_url = 'http://maven.yfengtech.cn/nexus/content/repositories/releases/'
 }
 
 buildscript {
@@ -21,10 +20,6 @@ allprojects {
         maven { url "https://repo1.maven.org/maven2/" }
         maven { url 'https://jitpack.io' }
         google()
-        maven {
-            allowInsecureProtocol = true
-            url rootProject.ext.maven_url
-        }
     }
 }
 

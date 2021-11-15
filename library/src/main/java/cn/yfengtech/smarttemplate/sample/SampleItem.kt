@@ -1,8 +1,7 @@
-package com.yf.smarttemplate.sample
+package cn.yfengtech.smarttemplate.sample
 
 import android.app.Activity
 import android.content.Context
-import androidx.fragment.app.Fragment
 import java.io.Serializable
 
 /**

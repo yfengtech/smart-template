@@ -1,4 +1,4 @@
-package com.yf.smarttemplate.data
+package cn.yfengtech.smarttemplate.data
 
 import org.json.JSONArray
 import org.json.JSONObject

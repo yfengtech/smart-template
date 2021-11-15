@@ -1,4 +1,4 @@
-package com.yf.smarttemplate.constants
+package cn.yfengtech.smarttemplate.constants
 
 object Params {
     const val KEY_FRAGMENT_TITLE = "SmartTitle"

@@ -1,21 +1,19 @@
-package com.yf.smarttemplate.adapter
+package cn.yfengtech.smarttemplate.adapter
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.yf.smarttemplate.R
-import com.yf.smarttemplate.constants.Params
-import com.yf.smarttemplate.fragment.MainFragment
-import com.yf.smarttemplate.fragment.replaceFragment
-import com.yf.smarttemplate.sample.ActivitySampleItem
-import com.yf.smarttemplate.sample.ExecutionSampleItem
-import com.yf.smarttemplate.sample.FragmentSampleItem
-import com.yf.smarttemplate.sample.SampleContainer
+import cn.yfengtech.smarttemplate.constants.Params
+import cn.yfengtech.smarttemplate.fragment.MainFragment
+import cn.yfengtech.smarttemplate.fragment.replaceFragment
+import cn.yfengtech.smarttemplate.sample.ActivitySampleItem
+import cn.yfengtech.smarttemplate.sample.ExecutionSampleItem
+import cn.yfengtech.smarttemplate.sample.FragmentSampleItem
+import cn.yfengtech.smarttemplate.sample.SampleContainer
 
 /**
  * 首页RecyclerView的adapter

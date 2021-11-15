@@ -1,4 +1,4 @@
-package com.yf.smarttemplate
+package cn.yfengtech.smarttemplate
 
 import android.app.Application
 import android.content.Intent

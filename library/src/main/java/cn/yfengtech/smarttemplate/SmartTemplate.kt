@@ -1,17 +1,15 @@
-package com.yf.smarttemplate
+package cn.yfengtech.smarttemplate
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.yf.smarttemplate.data.SampleAdapter
-import com.yf.smarttemplate.fragment.addHomeFragment
-import com.yf.smarttemplate.fragment.registerFragmentLifecycle
-import com.yf.smarttemplate.sample.SampleContainer
-import com.yf.smarttemplate.ui.MainUI
-import com.yf.smarttemplate.ui.replaceContentView
-import com.yf.smarttemplate.ui.setToolbarBackListener
+import com.yf.smarttemplate.R
+import cn.yfengtech.smarttemplate.data.SampleAdapter
+import cn.yfengtech.smarttemplate.fragment.addHomeFragment
+import cn.yfengtech.smarttemplate.fragment.registerFragmentLifecycle
+import cn.yfengtech.smarttemplate.sample.SampleContainer
+import cn.yfengtech.smarttemplate.ui.MainUI
+import cn.yfengtech.smarttemplate.ui.replaceContentView
+import cn.yfengtech.smarttemplate.ui.setToolbarBackListener
 
 /**
  * 智能Demo模板，常用与写一些demo，避免

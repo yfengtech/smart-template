@@ -1,19 +1,18 @@
-package com.yf.smarttemplate.fragment
+package cn.yfengtech.smarttemplate.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yf.smarttemplate.R
-import com.yf.smarttemplate.adapter.TemplateAdapter
-import com.yf.smarttemplate.constants.Params
-import com.yf.smarttemplate.debugLog
-import com.yf.smarttemplate.sample.SampleContainer
+import cn.yfengtech.smarttemplate.adapter.TemplateAdapter
+import cn.yfengtech.smarttemplate.constants.Params
+import cn.yfengtech.smarttemplate.debugLog
+import cn.yfengtech.smarttemplate.sample.SampleContainer
 
 private const val ARG_PARAM1 = "param1"
 

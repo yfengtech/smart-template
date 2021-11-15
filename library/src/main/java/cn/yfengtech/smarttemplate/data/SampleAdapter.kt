@@ -1,8 +1,7 @@
-package com.yf.smarttemplate.data
+package cn.yfengtech.smarttemplate.data
 
 import android.R
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

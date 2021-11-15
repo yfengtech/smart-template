@@ -41,30 +41,15 @@ task generateSourcesJar(type: Jar) {
     classifier 'sources'
 }
 
-//Properties properties = new Properties()
-//properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-//publishing {
-//    publications {
-//        // 可配置多个发布项
-//        aar(MavenPublication) {
-//            groupId = 'cn.yfengtech'
-//            artifactId = 'smart-template'
-//            version = '1.2.1'
-//            afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
-//            artifact generateSourcesJar
-//        }
-//    }
-//    repositories {
-//        // 可配置多个repo
-//        maven {
-//            name = "yfengtech"
-//            allowInsecureProtocol = true
-//            url = rootProject.ext.maven_url
-//            credentials {
-//                username = 'yfengtech'
-//                password = properties.getProperty("maven.password")
-//            }
-//        }
-//    }
-//}
+publishing {
+    publications {
+        // 可配置多个发布项
+        release(MavenPublication) {
+            groupId 'com.github.yfengtech'
+            artifactId 'smart-template'
+            version '0.0.2'
+            afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+            artifact generateSourcesJar
+        }
+    }
+}

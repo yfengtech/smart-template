@@ -1,7 +1,6 @@
-package com.yf.smarttemplate.sample
+package cn.yfengtech.smarttemplate.sample
 
 import android.app.Activity
-import androidx.fragment.app.Fragment
 
 /**
  * demo的包装容器，内存有sample列表和嵌套列表
