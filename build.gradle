@@ -5,13 +5,13 @@ ext {
 }
 
 buildscript {
-    ext.kotlin_version = '1.4.32'
+    ext.kotlin_version = '1.5.31'
     repositories {
         google()
         maven { url "https://repo1.maven.org/maven2/" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.1'
+        classpath 'com.android.tools.build:gradle:7.0.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -19,6 +19,7 @@ buildscript {
 allprojects {
     repositories {
         maven { url "https://repo1.maven.org/maven2/" }
+        maven { url 'https://jitpack.io' }
         google()
         maven {
             allowInsecureProtocol = true
